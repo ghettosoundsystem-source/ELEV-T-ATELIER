@@ -1,1 +1,3662 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="elevét" />
+  <meta name="description" content="elevét — Cold-Pressed Juice Atelier. Customer ordering, bespoke juice builder, live order tracking, and staff inventory control." />
+  <title>elevét — Cold-Pressed Juice Atelier</title>
+
+  <!-- Inline SVG App Icon & Dynamic PWA Manifest -->
+  <link id="pwa-apple-icon" rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%2309090B'/%3E%3Ctext x='256' y='295' font-family='Georgia, serif' font-size='150' font-style='italic' fill='%23FFFFFF' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E" />
+  <link id="pwa-manifest" rel="manifest" href="" />
+
+  <!-- Editorial Typography: Cormorant Garamond + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#09090B',
+            charcoal: '#18181B',
+            ash: '#71717A',
+            mist: '#F4F4F5',
+            hairline: '#E4E4E7',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4D4D8;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #09090B;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fadeSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes subtleFloat {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(0, -10px, 0) scale(1.03);
+      }
+    }
+    .juice-splash-float {
+      animation: subtleFloat 16s ease-in-out infinite;
+    }
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shakeError 0.28s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-white text-obsidian font-sans antialiased selection:bg-obsidian selection:text-white pb-24 md:pb-12 relative overflow-x-hidden">
+
+  <!-- Delicate Botanical Cold-Pressed Colour Splashes Framing the Crisp White Canvas -->
+  <div aria-hidden="true" class="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none">
+    <!-- Top-Left Citrus Yuzu & Tangerine Mist -->
+    <div class="juice-splash-float absolute -top-24 -left-24 w-72 h-72 sm:w-96 sm:h-96 opacity-35">
+      <svg viewBox="0 0 320 320" fill="none" class="w-full h-full">
+        <circle cx="130" cy="130" r="105" fill="url(#edgeCitrusGrad)" />
+        <circle cx="235" cy="95" r="10" fill="#FF8A00" fill-opacity="0.55" />
+        <circle cx="255" cy="122" r="5" fill="#FFD000" fill-opacity="0.7" />
+        <defs>
+          <radialGradient id="edgeCitrusGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(130 130) rotate(45) scale(110)">
+            <stop offset="0%" stop-color="#FF7A00" stop-opacity="0.55" />
+            <stop offset="55%" stop-color="#FFD000" stop-opacity="0.28" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Top-Right Hibiscus Berry & Dragonfruit Mist -->
+    <div class="juice-splash-float absolute top-12 -right-28 w-80 h-80 sm:w-[26rem] sm:h-[26rem] opacity-30" style="animation-delay: -5s;">
+      <svg viewBox="0 0 340 340" fill="none" class="w-full h-full">
+        <circle cx="195" cy="165" r="115" fill="url(#edgeBerryGrad)" />
+        <circle cx="88" cy="118" r="9" fill="#F43F5E" fill-opacity="0.5" />
+        <circle cx="70" cy="144" r="4.5" fill="#FB7185" fill-opacity="0.65" />
+        <defs>
+          <radialGradient id="edgeBerryGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(195 165) rotate(135) scale(120)">
+            <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.5" />
+            <stop offset="60%" stop-color="#FB7185" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Bottom-Left Cold-Pressed Kale & Matcha Mist -->
+    <div class="juice-splash-float absolute -bottom-24 -left-20 w-72 h-72 sm:w-96 sm:h-96 opacity-30" style="animation-delay: -9s;">
+      <svg viewBox="0 0 320 320" fill="none" class="w-full h-full">
+        <circle cx="135" cy="185" r="110" fill="url(#edgeGreenGrad)" />
+        <circle cx="238" cy="212" r="8" fill="#10B981" fill-opacity="0.5" />
+        <defs>
+          <radialGradient id="edgeGreenGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(135 185) rotate(-35) scale(115)">
+            <stop offset="0%" stop-color="#10B981" stop-opacity="0.48" />
+            <stop offset="60%" stop-color="#84CC16" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Staff Mode Banner (Visible ONLY when unlocked by Staff) -->
+  <div id="staff-mode-banner" class="hidden relative z-40 bg-obsidian text-white text-xs border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="font-semibold uppercase tracking-[0.18em] text-[10px]">Staff &amp; Owner Mode</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+        <button onclick="switchView('inventory'); toggleNewJuiceModal(true);" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white text-obsidian hover:bg-zinc-200 text-[11px] font-semibold transition-colors">
+          <span>+ Add Juice</span>
+        </button>
+        <button onclick="switchView('inventory'); toggleNewSupplyModal(true);" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white text-[11px] font-semibold transition-colors">
+          <span>+ Add Supply</span>
+        </button>
+        <button onclick="openOwnerSettingsModal()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition-colors">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Settings</span>
+        </button>
+        <button onclick="exitStaffMode()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-600 hover:border-white text-zinc-200 hover:text-white text-[11px] font-semibold transition-colors">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span>Lock</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Sticky Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- Brand Identity -->
+      <button onclick="switchView('menu')" class="flex items-baseline gap-3 text-left group focus:outline-none">
+        <span class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-obsidian">elevét</span>
+        <span class="hidden sm:inline-block text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-medium border-l border-zinc-300 pl-3">Cold-Pressed Atelier</span>
+      </button>
+
+      <!-- Desktop Navigation Pills (Customer Mode) -->
+      <nav id="nav-desktop-customer" aria-label="Customer Navigation" class="hidden md:flex items-center bg-zinc-100 border border-zinc-200 rounded-full p-1">
+        <button id="nav-cust-menu" onclick="switchView('menu')" class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-obsidian text-white shadow-sm">
+          Menu &amp; Order
+        </button>
+        <button id="nav-cust-track" onclick="switchView('track')" class="px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian flex items-center gap-2">
+          Track Order
+          <span id="badge-tracked-desktop" class="hidden px-2 py-0.5 text-[10px] rounded-full bg-zinc-200 text-obsidian font-bold tabular-nums">0</span>
+        </button>
+      </nav>
+
+      <!-- Desktop Navigation Pills (Staff Mode — Hidden until password unlocked) -->
+      <nav id="nav-desktop-staff" aria-label="Staff Operations Navigation" class="hidden items-center bg-zinc-100 border border-zinc-200 rounded-full p-1">
+        <button id="nav-staff-orders" onclick="switchView('orders')" class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian flex items-center gap-2">
+          Orders &amp; Delivery
+          <span id="badge-active-orders-desktop" class="px-2 py-0.5 text-[10px] rounded-full bg-zinc-200 text-obsidian font-bold tabular-nums">0</span>
+        </button>
+        <button id="nav-staff-inventory" onclick="switchView('inventory')" class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian flex items-center gap-2">
+          Stock &amp; Inventory
+          <span id="badge-low-stock-desktop" class="px-2 py-0.5 text-[10px] rounded-full bg-zinc-200 text-obsidian font-bold tabular-nums">0</span>
+        </button>
+        <button id="nav-staff-menu" onclick="switchView('menu')" class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian">
+          Menu Preview
+        </button>
+      </nav>
+
+      <!-- Right Actions: Staff Access, PWA Install & Customer Bag -->
+      <div class="flex items-center gap-2">
+        <button id="staff-portal-btn" onclick="openStaffGate()" title="Staff Portal Login" class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-full border border-zinc-200 hover:border-obsidian text-xs font-medium text-zinc-600 hover:text-obsidian transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span class="hidden sm:inline">Staff</span>
+        </button>
+
+        <button id="pwa-install-btn" onclick="handleInstallClick()" title="Install elevét App" class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-full border border-zinc-200 hover:border-obsidian text-xs font-medium text-obsidian transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
+          </svg>
+          <span class="hidden lg:inline">Install App</span>
+        </button>
+
+        <button onclick="toggleBagDrawer(true)" class="relative inline-flex items-center gap-2.5 bg-obsidian text-white hover:bg-zinc-800 px-4 sm:px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all shadow-sm active:scale-[0.98]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span>Bag</span>
+          <span id="bag-count-pill" class="bg-white text-obsidian px-2 py-0.5 rounded-full text-[11px] font-bold tabular-nums">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Container -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+
+    <!-- ========================================================= -->
+    <!-- VIEW 1: CUSTOMER MENU & ORDERING                          -->
+    <!-- ========================================================= -->
+    <section id="view-menu" class="animate-fade-up">
+      <!-- Editorial Hero Banner -->
+      <div class="border border-zinc-200 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 bg-white relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-zinc-500 font-semibold mb-3">Raw &bull; Unpasteurized &bull; Pressed Daily</p>
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-obsidian leading-[1.08] mb-4">
+            Pure botanical extraction, bottled in <span class="italic font-normal">monochrome clarity.</span>
+          </h1>
+          <p class="text-sm sm:text-base text-zinc-600 leading-relaxed mb-6 max-w-xl">
+            Every bottle is cold-pressed to order in small batches. Choose from our signature blends or compose your own bespoke juice from our live cold-store ingredients.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 text-xs text-zinc-600">
+            <span id="sync-status-pill" class="inline-flex items-center gap-1.5 bg-zinc-100 border border-zinc-200 px-3.5 py-1.5 rounded-full font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Menu Availability
+            </span>
+            <button onclick="openCustomJuiceModal()" class="inline-flex items-center gap-2 bg-obsidian text-white hover:bg-zinc-800 px-4 py-1.5 rounded-full font-semibold transition-colors shadow-xs">
+              <span>+ Create Your Own Blend</span>
+            </button>
+            <button onclick="switchView('track')" class="inline-flex items-center gap-1.5 bg-white hover:bg-zinc-100 border border-zinc-300 text-obsidian px-3.5 py-1.5 rounded-full font-semibold transition-colors">
+              Track Existing Order &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Geometric Line Art + Subtle Cold-Pressed Juice Splash Emblem -->
+        <div class="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 pointer-events-none">
+          <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
+            <path d="M134 38c42 6 72 46 66 88-6 42-46 72-88 68-42-4-74-42-70-84 4-42 42-74 84-72 3 0 5 0 8 0z" fill="url(#heroJuiceSplash)" />
+            <circle cx="192" cy="64" r="7" fill="#FF7A00" fill-opacity="0.55" />
+            <circle cx="56" cy="176" r="6" fill="#10B981" fill-opacity="0.5" />
+            <circle cx="182" cy="182" r="5" fill="#F43F5E" fill-opacity="0.5" />
+            <g stroke="#09090B" stroke-width="1.2" opacity="0.28">
+              <circle cx="120" cy="120" r="110" />
+              <circle cx="120" cy="120" r="82" stroke-dasharray="4 4" />
+              <rect x="92" y="45" width="56" height="150" rx="28" />
+              <line x1="120" y1="20" x2="120" y2="220" />
+            </g>
+            <defs>
+              <linearGradient id="heroJuiceSplash" x1="45" y1="38" x2="195" y2="195" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF9E00" stop-opacity="0.32" />
+                <stop offset="50%" stop-color="#F43F5E" stop-opacity="0.24" />
+                <stop offset="100%" stop-color="#10B981" stop-opacity="0.26" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Owner Menu Editor Toolbar (Visible ONLY in Staff & Owner Mode) -->
+      <div id="owner-menu-toolbar" class="hidden mb-6 border border-zinc-200 rounded-2xl p-4 bg-zinc-50 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">Owner Menu Editor</p>
+          <p class="text-xs text-obsidian font-medium">Add new cold-pressed blends or tap Edit on any bottle card below.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="toggleNewJuiceModal(true)" class="px-4 py-2 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors">
+            + Add New Blend
+          </button>
+          <button onclick="switchView('inventory')" class="px-4 py-2 rounded-full border border-zinc-300 bg-white hover:border-obsidian text-obsidian text-xs font-semibold transition-colors">
+            Open Stock Ledger
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filters & Custom Builder Trigger -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
+        <div id="category-filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+          <!-- Populated dynamically via JS -->
+        </div>
+        <div class="flex items-center justify-between sm:justify-end gap-3">
+          <span class="text-xs text-zinc-500 font-medium tabular-nums">
+            Showing <span id="menu-visible-count" class="text-obsidian font-semibold">0</span> blends
+          </span>
+          <button onclick="openCustomJuiceModal()" class="px-3.5 py-1.5 rounded-full border border-obsidian bg-white hover:bg-obsidian hover:text-white text-obsidian text-xs font-semibold transition-colors whitespace-nowrap">
+            + Bespoke Juice
+          </button>
+        </div>
+      </div>
+
+      <!-- Juice Menu Grid -->
+      <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: CUSTOMER ORDER TRACKING                           -->
+    <!-- ========================================================= -->
+    <section id="view-track" class="hidden animate-fade-up">
+      <div class="max-w-3xl mx-auto">
+        <div class="mb-8">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-1.5">Live Chilled Courier Updates</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-obsidian">Track Your Order</h2>
+          <p class="text-sm text-zinc-600 mt-1.5">Enter your order reference or mobile number to follow your cold-pressed delivery in real time.</p>
+        </div>
+
+        <form onsubmit="lookupCustomerOrder(event)" class="border border-zinc-200 rounded-3xl p-5 sm:p-6 bg-white mb-8 shadow-xs">
+          <label for="track-lookup-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">Order Reference or Mobile Number</label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              id="track-lookup-input"
+              required
+              placeholder="Enter Order ID or mobile number"
+              class="flex-1 px-4 py-3 rounded-2xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white"
+            />
+            <button type="submit" class="px-6 py-3 rounded-2xl bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-widest transition-colors shrink-0">
+              Find Order
+            </button>
+          </div>
+        </form>
+
+        <div id="customer-tracked-orders" class="space-y-5">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 3: STAFF ONLY — ORDERS & DELIVERY DISPATCH           -->
+    <!-- ========================================================= -->
+    <section id="view-orders" class="hidden animate-fade-up">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-1.5">Staff Operations &bull; Courier Dispatch</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-obsidian">Orders &amp; Delivery</h2>
+        </div>
+
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar bg-zinc-100 border border-zinc-200 p-1 rounded-full">
+          <button onclick="setOrderFilter('All')" data-order-filter="All" class="order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-obsidian text-white transition-all">All</button>
+          <button onclick="setOrderFilter('New')" data-order-filter="New" class="order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-obsidian transition-all">New</button>
+          <button onclick="setOrderFilter('Preparing')" data-order-filter="Preparing" class="order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-obsidian transition-all">Preparing</button>
+          <button onclick="setOrderFilter('Out for Delivery')" data-order-filter="Out for Delivery" class="order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-obsidian transition-all">En Route</button>
+          <button onclick="setOrderFilter('Delivered')" data-order-filter="Delivered" class="order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-obsidian transition-all">Delivered</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Active Orders</p>
+          <p id="kpi-active-orders" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Out for Delivery</p>
+          <p id="kpi-enroute-orders" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Delivered Today</p>
+          <p id="kpi-delivered-orders" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Gross Order Value</p>
+          <p id="kpi-revenue" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">&pound;0.00</p>
+        </div>
+      </div>
+
+      <div id="orders-list" class="space-y-4">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 4: STAFF ONLY — STOCK & INVENTORY CONTROL            -->
+    <!-- ========================================================= -->
+    <section id="view-inventory" class="hidden animate-fade-up">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-1.5">Staff Operations &bull; Cellar, Produce &amp; Packaging</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-obsidian">Stock &amp; Inventory</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+          <button onclick="toggleNewSupplyModal(true)" class="inline-flex items-center justify-center gap-2 bg-white text-obsidian border border-zinc-300 hover:border-obsidian px-4 py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Add Ingredient / Supply</span>
+          </button>
+          <button onclick="toggleNewJuiceModal(true)" class="inline-flex items-center justify-center gap-2 bg-obsidian text-white hover:bg-zinc-800 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Add New Blend</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Automated Low-Stock Warning Banner -->
+      <div id="low-stock-alert-banner" class="hidden mb-6 border border-amber-300 bg-amber-50/85 rounded-2xl p-4 sm:p-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-full bg-amber-500/15 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              </svg>
+            </span>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-amber-900">Low Stock Warning &mdash; Reorder Attention Needed</p>
+              <p id="low-stock-alert-summary" class="text-xs text-amber-800 mt-1 leading-relaxed"></p>
+            </div>
+          </div>
+          <button onclick="setSupplyFilter('Low Stock'); setInventoryTab('supplies');" class="self-start sm:self-center shrink-0 px-3.5 py-2 rounded-full bg-obsidian text-white text-[11px] font-semibold uppercase tracking-wider hover:bg-zinc-800 transition-colors">
+            Review Low Supplies
+          </button>
+        </div>
+      </div>
+
+      <!-- Inventory KPI Strip -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Bottled Cellar Stock</p>
+          <p id="kpi-total-bottles" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Total Low Stock Alerts</p>
+          <p id="kpi-low-skus" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Ingredients &amp; Packaging</p>
+          <p id="kpi-supply-items" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">0</p>
+        </div>
+        <div class="border border-zinc-200 rounded-2xl p-5 bg-white">
+          <p class="text-xs text-zinc-500 font-medium mb-1">Retail Cellar Value</p>
+          <p id="kpi-stock-value" class="font-serif text-3xl font-semibold text-obsidian tabular-nums">&pound;0.00</p>
+        </div>
+      </div>
+
+      <!-- Inventory Section Switcher -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar mb-6">
+        <button onclick="setInventoryTab('all')" data-inv-tab="all" class="inv-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-obsidian text-white transition-all whitespace-nowrap">
+          All Stock (Juices &amp; Supplies)
+        </button>
+        <button onclick="setInventoryTab('juices')" data-inv-tab="juices" class="inv-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian hover:text-obsidian transition-all whitespace-nowrap">
+          Bottled Juice Blends
+        </button>
+        <button onclick="setInventoryTab('supplies')" data-inv-tab="supplies" class="inv-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian hover:text-obsidian transition-all whitespace-nowrap">
+          Fruits, Ingredients &amp; Packaging
+        </button>
+      </div>
+
+      <!-- Raw Ingredients, Fruits & Packaging Card -->
+      <div id="supplies-inventory-card" class="border border-zinc-200 rounded-3xl bg-white overflow-hidden mb-8">
+        <div class="px-5 py-4 border-b border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-zinc-50/70">
+          <div>
+            <h3 class="font-serif text-2xl font-semibold text-obsidian">Fruits, Ingredients &amp; Packaging</h3>
+            <p class="text-xs text-zinc-500">In-stock Fruits &amp; Botanicals automatically appear in the Customer Bespoke Juice Builder</p>
+          </div>
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <button onclick="setSupplyFilter('All')" data-supply-filter="All" class="supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-obsidian text-white transition-all whitespace-nowrap">All</button>
+            <button onclick="setSupplyFilter('Low Stock')" data-supply-filter="Low Stock" class="supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian transition-all whitespace-nowrap">Low Stock</button>
+            <button onclick="setSupplyFilter('Fruits & Produce')" data-supply-filter="Fruits & Produce" class="supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian transition-all whitespace-nowrap">Fruits &amp; Produce</button>
+            <button onclick="setSupplyFilter('Roots & Botanicals')" data-supply-filter="Roots & Botanicals" class="supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian transition-all whitespace-nowrap">Roots &amp; Botanicals</button>
+            <button onclick="setSupplyFilter('Bottles & Labels')" data-supply-filter="Bottles & Labels" class="supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian transition-all whitespace-nowrap">Bottles &amp; Labels</button>
+          </div>
+        </div>
+        <div id="supplies-list-body" class="divide-y divide-zinc-200">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Bottled Juice Inventory Card -->
+      <div id="juices-inventory-card" class="border border-zinc-200 rounded-3xl bg-white overflow-hidden">
+        <div class="px-5 py-4 border-b border-zinc-200 bg-zinc-50/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="font-serif text-2xl font-semibold text-obsidian">Bottled Cold-Pressed Blends</h3>
+            <p class="text-xs text-zinc-500">Edit menu blends, prices, or bottle counts &bull; +10 batch deducts packaging if tracked</p>
+          </div>
+        </div>
+        <div id="juices-list-body" class="divide-y divide-zinc-200">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar (Customer Mode) -->
+  <nav id="nav-mobile-customer" aria-label="Mobile Customer Navigation" class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-zinc-200 px-2 py-2 flex items-center justify-around">
+    <button id="nav-mob-cust-menu" onclick="switchView('menu')" class="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-obsidian font-semibold transition-colors">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10" />
+      </svg>
+      <span class="text-[11px]">Menu</span>
+    </button>
+    <button onclick="openCustomJuiceModal()" class="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-600 hover:text-obsidian font-medium transition-colors">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+      </svg>
+      <span class="text-[11px]">Create Juice</span>
+    </button>
+    <button id="nav-mob-cust-track" onclick="switchView('track')" class="relative flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-500 font-medium transition-colors">
+      <div class="relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span id="badge-tracked-mobile" class="hidden absolute -top-1 -right-2.5 bg-obsidian text-white text-[9px] font-bold px-1.5 rounded-full tabular-nums">0</span>
+      </div>
+      <span class="text-[11px]">Track</span>
+    </button>
+    <button onclick="openStaffGate()" class="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-400 hover:text-obsidian font-medium transition-colors">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+      <span class="text-[11px]">Staff</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Bottom Navigation Bar (Staff Mode — Hidden until password unlocked) -->
+  <nav id="nav-mobile-staff" aria-label="Mobile Staff Navigation" class="hidden md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-zinc-200 px-2 py-2 flex items-center justify-around">
+    <button id="nav-mob-staff-orders" onclick="switchView('orders')" class="relative flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-obsidian font-semibold transition-colors">
+      <div class="relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+        <span id="badge-active-orders-mobile" class="absolute -top-1 -right-2.5 bg-obsidian text-white text-[9px] font-bold px-1.5 rounded-full tabular-nums">0</span>
+      </div>
+      <span class="text-[11px]">Dispatch</span>
+    </button>
+    <button id="nav-mob-staff-inventory" onclick="switchView('inventory')" class="relative flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-500 font-medium transition-colors">
+      <div class="relative">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <span id="badge-low-stock-mobile" class="absolute -top-1 -right-2.5 bg-zinc-200 text-obsidian text-[9px] font-bold px-1.5 rounded-full tabular-nums">0</span>
+      </div>
+      <span class="text-[11px]">Inventory</span>
+    </button>
+    <button id="nav-mob-staff-menu" onclick="switchView('menu')" class="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-500 font-medium transition-colors">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10" />
+      </svg>
+      <span class="text-[11px]">Menu</span>
+    </button>
+    <button onclick="openOwnerSettingsModal()" class="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-zinc-500 hover:text-obsidian font-medium transition-colors">
+      <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span class="text-[11px]">Settings</span>
+    </button>
+  </nav>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: CUSTOMER BESPOKE JUICE BUILDER STUDIO              -->
+  <!-- ========================================================= -->
+  <div id="custom-juice-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="custom-juice-title">
+    <div onclick="closeCustomJuiceModal()" class="fixed inset-0 bg-black/45 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-2xl bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-4 border-b border-zinc-100 pb-4 mb-6">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-1">Bespoke Cold-Press Studio</p>
+          <h3 id="custom-juice-title" class="font-serif text-3xl font-semibold text-obsidian">Create Your Own Blend</h3>
+        </div>
+        <button onclick="closeCustomJuiceModal()" class="p-2 rounded-full border border-zinc-200 hover:border-obsidian text-obsidian">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dynamic Builder Body (Populated via JS from live in-stock supplies) -->
+      <div id="custom-juice-builder-body"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: STAFF & OWNER PASSWORD GATE                        -->
+  <!-- ========================================================= -->
+  <div id="staff-gate-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="staff-gate-title">
+    <div onclick="closeStaffGate()" class="fixed inset-0 bg-black/50 backdrop-blur-xs"></div>
+    <div id="staff-gate-card" class="relative z-10 w-full max-w-sm bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl text-center">
+      <button onclick="closeStaffGate()" class="absolute top-4 right-4 p-2 rounded-full border border-zinc-200 hover:border-obsidian text-zinc-600">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="w-12 h-12 rounded-full bg-obsidian text-white flex items-center justify-center mx-auto mb-4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+
+      <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold mb-1">Restricted Business Area</p>
+      <h3 id="staff-gate-title" class="font-serif text-2xl font-semibold text-obsidian mb-1">Staff &amp; Owner Access</h3>
+      <p class="text-xs text-zinc-500 mb-5">Enter your atelier password to manage menus, orders, delivery dispatch, and inventory.</p>
+
+      <form onsubmit="submitStaffPin(event)" class="space-y-4">
+        <div class="relative">
+          <input
+            type="password"
+            id="staff-pin-input"
+            required
+            autocomplete="current-password"
+            placeholder="Enter password"
+            class="w-full text-center font-medium text-base py-3 px-10 rounded-2xl border border-zinc-300 focus:border-obsidian focus:outline-none bg-zinc-50"
+          />
+          <button type="button" onclick="toggleGatePasswordVisibility()" aria-label="Show or hide password" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-obsidian p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </button>
+        </div>
+        <p id="staff-pin-error" class="hidden text-xs font-medium text-red-600">Incorrect password. Please try again.</p>
+
+        <button type="submit" class="w-full py-3.5 px-6 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-widest transition-all">
+          Unlock Portal
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- SLIDE-OVER CUSTOMER BAG & CHECKOUT DRAWER                 -->
+  <!-- ========================================================= -->
+  <div id="bag-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="bag-drawer-title">
+    <div onclick="toggleBagDrawer(false)" class="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity"></div>
+
+    <div class="fixed inset-y-0 right-0 w-full max-w-md bg-white border-l border-zinc-200 shadow-2xl flex flex-col z-10">
+      <div class="px-6 py-5 border-b border-zinc-200 flex items-center justify-between">
+        <div>
+          <h3 id="bag-drawer-title" class="font-serif text-2xl font-semibold text-obsidian">Your Chilled Bag</h3>
+          <p class="text-xs text-zinc-500">Live inventory verified before dispatch</p>
+        </div>
+        <button onclick="toggleBagDrawer(false)" class="p-2.5 rounded-full border border-zinc-200 hover:border-obsidian text-obsidian transition-colors" aria-label="Close bag">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-6 space-y-6">
+        <div id="bag-items-container" class="space-y-3">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <form id="checkout-form" onsubmit="submitCustomerOrder(event)" class="space-y-4 pt-4 border-t border-zinc-200">
+          <p class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-semibold">Delivery Details</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-zinc-700 mb-1">Full Name *</label>
+              <input type="text" id="order-customer-name" required placeholder="Your full name" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-zinc-700 mb-1">Mobile Number *</label>
+              <input type="tel" id="order-customer-phone" required placeholder="Contact mobile number" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Street Address *</label>
+            <input type="text" id="order-address" required placeholder="House number and street name" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-zinc-700 mb-1">Postcode *</label>
+              <input type="text" id="order-postcode" required placeholder="Delivery postcode" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm uppercase bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-zinc-700 mb-1">Delivery Window *</label>
+              <select id="order-window" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+                <option value="Morning Press (08:00 – 11:00)">Morning (08:00 – 11:00)</option>
+                <option value="Midday Chilled (12:00 – 15:00)" selected>Midday (12:00 – 15:00)</option>
+                <option value="Evening Drop (17:00 – 20:00)">Evening (17:00 – 20:00)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Courier Notes (Optional)</label>
+            <input type="text" id="order-notes" placeholder="Safe place or buzzer instructions" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white" />
+          </div>
+
+          <div id="checkout-payment-notice" class="rounded-2xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 flex items-center justify-between gap-2 text-[11px] text-zinc-600">
+            <span>Payment Method</span>
+            <span id="checkout-payment-method-label" class="font-semibold text-obsidian">Order Confirmation &bull; Stripe Ready</span>
+          </div>
+        </form>
+      </div>
+
+      <div class="p-6 border-t border-zinc-200 bg-zinc-50 space-y-3">
+        <div class="flex justify-between text-xs text-zinc-600">
+          <span>Subtotal</span>
+          <span id="bag-subtotal" class="font-semibold text-obsidian tabular-nums">&pound;0.00</span>
+        </div>
+        <div class="flex justify-between text-xs text-zinc-600">
+          <span>Chilled Courier Delivery</span>
+          <span id="bag-delivery-fee" class="font-semibold text-obsidian tabular-nums">&pound;3.50</span>
+        </div>
+        <div class="flex justify-between text-base font-semibold text-obsidian pt-2 border-t border-zinc-200">
+          <span>Total</span>
+          <span id="bag-total" class="font-serif text-2xl tabular-nums">&pound;0.00</span>
+        </div>
+        <button id="checkout-submit-btn" type="submit" form="checkout-form" class="w-full py-3.5 px-6 rounded-full bg-obsidian text-white hover:bg-zinc-800 disabled:bg-zinc-300 disabled:text-zinc-500 disabled:cursor-not-allowed text-xs font-semibold uppercase tracking-widest transition-all shadow-sm">
+          Place Chilled Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: ADD OR EDIT JUICE BLEND IN INVENTORY & MENU        -->
+  <!-- ========================================================= -->
+  <div id="new-juice-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div onclick="toggleNewJuiceModal(false)" class="fixed inset-0 bg-black/40 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-lg bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <p id="juice-modal-eyebrow" class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold">Pressing Room Release</p>
+          <h3 id="juice-modal-title" class="font-serif text-2xl font-semibold text-obsidian">Add Cold-Pressed Blend</h3>
+        </div>
+        <button onclick="toggleNewJuiceModal(false)" class="p-2 rounded-full border border-zinc-200 hover:border-obsidian">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveJuice(event)" class="space-y-4">
+        <input type="hidden" id="edit-juice-id" value="" />
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Blend Name *</label>
+            <input type="text" id="new-juice-name" required placeholder="Blend name" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Bottle No. *</label>
+            <input type="text" id="new-juice-number" required placeholder="01" maxlength="4" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm font-mono" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Category *</label>
+            <select id="new-juice-category" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="Detox">Detox</option>
+              <option value="Immunity">Immunity</option>
+              <option value="Energy">Energy</option>
+              <option value="Glow">Glow</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Juice Colour</label>
+            <select id="new-juice-tint" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="#F59E0B">Citrus Gold</option>
+              <option value="#10B981">Botanical Green</option>
+              <option value="#E11D48">Ruby Berry</option>
+              <option value="#F97316">Blood Orange</option>
+              <option value="#EAB308">Yuzu Sunshine</option>
+              <option value="#EC4899">Dragonfruit Pink</option>
+              <option value="#18181B">Obsidian Charcoal</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Botanical Ingredients *</label>
+          <input type="text" id="new-juice-ingredients" required placeholder="List cold-pressed fruits, greens & botanicals" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Tasting Notes</label>
+          <input type="text" id="new-juice-notes" placeholder="Flavour profile & finish" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Price (&pound;) *</label>
+            <input type="number" step="0.10" min="0.50" id="new-juice-price" required placeholder="6.50" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Cellar Bottles *</label>
+            <input type="number" min="0" id="new-juice-stock" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2.5">
+          <button type="button" onclick="toggleNewJuiceModal(false)" class="px-5 py-2.5 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-700 hover:border-obsidian">Cancel</button>
+          <button id="juice-modal-submit-btn" type="submit" class="px-6 py-2.5 rounded-full bg-obsidian text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800">Publish to Menu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: ADD OR EDIT INGREDIENT, FRUIT OR PACKAGING SUPPLY  -->
+  <!-- ========================================================= -->
+  <div id="new-supply-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div onclick="toggleNewSupplyModal(false)" class="fixed inset-0 bg-black/40 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-lg bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <p id="supply-modal-eyebrow" class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold">Cold Store &amp; Packaging Ledger</p>
+          <h3 id="supply-modal-title" class="font-serif text-2xl font-semibold text-obsidian">Add Ingredient or Supply</h3>
+        </div>
+        <button onclick="toggleNewSupplyModal(false)" class="p-2 rounded-full border border-zinc-200 hover:border-obsidian">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveSupply(event)" class="space-y-4">
+        <input type="hidden" id="edit-supply-id" value="" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Item Name *</label>
+            <input type="text" id="new-supply-name" required placeholder="Ingredient, bottle or label name" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Category *</label>
+            <select id="new-supply-category" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="Fruits & Produce">Fruits &amp; Produce</option>
+              <option value="Roots & Botanicals">Roots &amp; Botanicals</option>
+              <option value="Bottles & Labels">Bottles &amp; Labels</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Unit *</label>
+            <select id="new-supply-unit" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="kg">kg</option>
+              <option value="units">units</option>
+              <option value="pcs">pcs</option>
+              <option value="litres">litres</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">On Hand *</label>
+            <input type="number" step="0.5" min="0" id="new-supply-stock" required placeholder="0" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Low Warning Par *</label>
+            <input type="number" step="0.5" min="0.5" id="new-supply-min" required placeholder="5" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Standard Restock Batch *</label>
+            <input type="number" step="1" min="1" id="new-supply-batch" required placeholder="10" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Storage / Supplier Note</label>
+            <input type="text" id="new-supply-note" placeholder="Storage location or supplier" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2.5">
+          <button type="button" onclick="toggleNewSupplyModal(false)" class="px-5 py-2.5 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-700 hover:border-obsidian">Cancel</button>
+          <button id="supply-modal-submit-btn" type="submit" class="px-6 py-2.5 rounded-full bg-obsidian text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800">Add to Stock Ledger</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: EDIT CUSTOMER ORDER & DELIVERY DETAILS (STAFF)     -->
+  <!-- ========================================================= -->
+  <div id="edit-order-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div onclick="closeEditOrderModal()" class="fixed inset-0 bg-black/40 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-lg bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold">Dispatch &amp; Customer Manifest</p>
+          <h3 id="edit-order-modal-title" class="font-serif text-2xl font-semibold text-obsidian">Edit Order Details</h3>
+        </div>
+        <button onclick="closeEditOrderModal()" class="p-2 rounded-full border border-zinc-200 hover:border-obsidian">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveEditedOrder(event)" class="space-y-4">
+        <input type="hidden" id="edit-order-id" value="" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Customer Name *</label>
+            <input type="text" id="edit-order-name" required class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Mobile Number *</label>
+            <input type="tel" id="edit-order-phone" required class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Street Address *</label>
+          <input type="text" id="edit-order-address" required class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Postcode *</label>
+            <input type="text" id="edit-order-postcode" required class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm uppercase" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Delivery Window *</label>
+            <select id="edit-order-window" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="Morning Press (08:00 – 11:00)">Morning (08:00 – 11:00)</option>
+              <option value="Midday Chilled (12:00 – 15:00)">Midday (12:00 – 15:00)</option>
+              <option value="Evening Drop (17:00 – 20:00)">Evening (17:00 – 20:00)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Fulfilment Status</label>
+            <select id="edit-order-status" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="New">New</option>
+              <option value="Preparing">Preparing</option>
+              <option value="Out for Delivery">Out for Delivery</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Payment Status (Stripe / Manual)</label>
+            <select id="edit-order-payment" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white">
+              <option value="Pending Payment">Pending Payment</option>
+              <option value="Paid via Stripe">Paid via Stripe</option>
+              <option value="Paid (Bank / Cash)">Paid (Bank / Cash)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Courier Notes</label>
+          <input type="text" id="edit-order-notes" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+
+        <div class="pt-3 flex items-center justify-between gap-2.5">
+          <button type="button" onclick="deleteOrderFromModal()" class="px-4 py-2.5 rounded-full border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold">Delete Order</button>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="closeEditOrderModal()" class="px-5 py-2.5 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-700 hover:border-obsidian">Cancel</button>
+            <button type="submit" class="px-6 py-2.5 rounded-full bg-obsidian text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: OWNER SETTINGS (PASSWORD, PRICING, STRIPE, BACKUP) -->
+  <!-- ========================================================= -->
+  <div id="owner-settings-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div onclick="closeOwnerSettingsModal()" class="fixed inset-0 bg-black/40 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-lg bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[92vh] overflow-y-auto space-y-6">
+      <div class="flex items-center justify-between border-b border-zinc-100 pb-4">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold">Atelier Administration</p>
+          <h3 class="font-serif text-2xl font-semibold text-obsidian">Owner Settings &amp; Backups</h3>
+        </div>
+        <button onclick="closeOwnerSettingsModal()" class="p-2 rounded-full border border-zinc-200 hover:border-obsidian">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Bespoke Custom Juice Pricing Section -->
+      <form onsubmit="handleSaveCustomBlendPrice(event)" class="space-y-3">
+        <p class="text-xs uppercase tracking-[0.2em] text-obsidian font-semibold">Bespoke Custom Blend Pricing</p>
+        <p class="text-xs text-zinc-500 leading-relaxed">
+          Set the retail price per 330ml bottle when customers create their own juice from your in-stock fruits and botanicals.
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="relative flex-1">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-500">&pound;</span>
+            <input type="number" step="0.10" min="1.00" id="settings-custom-juice-price" required value="7.50" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm font-semibold tabular-nums" />
+          </div>
+          <button type="submit" class="px-5 py-2.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors shrink-0">
+            Save Price
+          </button>
+        </div>
+      </form>
+
+      <!-- Change Password Section -->
+      <form onsubmit="handleChangePassword(event)" class="space-y-3.5 pt-5 border-t border-zinc-200">
+        <p class="text-xs uppercase tracking-[0.2em] text-obsidian font-semibold">Change Staff &amp; Owner Password</p>
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Current Password *</label>
+          <input type="password" id="settings-current-password" required placeholder="Enter current password" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">New Personal Password *</label>
+            <input type="password" id="settings-new-password" required minlength="4" placeholder="Enter new password" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-zinc-700 mb-1">Confirm New Password *</label>
+            <input type="password" id="settings-confirm-password" required minlength="4" placeholder="Re-enter new password" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+          </div>
+        </div>
+        <p id="settings-password-feedback" class="hidden text-xs font-medium"></p>
+        <div class="flex justify-end">
+          <button type="submit" class="px-5 py-2.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors">
+            Update Password
+          </button>
+        </div>
+      </form>
+
+      <!-- Stripe Payments Integration Section -->
+      <form onsubmit="handleSaveStripeConfig(event)" class="space-y-3.5 pt-5 border-t border-zinc-200">
+        <div class="flex items-center justify-between">
+          <p class="text-xs uppercase tracking-[0.2em] text-obsidian font-semibold">Stripe Payments Connection</p>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-100 text-zinc-700 border border-zinc-200">Ready to Link</span>
+        </div>
+        <p class="text-xs text-zinc-500 leading-relaxed">
+          Connect your Stripe Payment Link or checkout endpoint whenever you are ready. When enabled, customers will be directed to complete Stripe payment right after confirming their chilled delivery order.
+        </p>
+        <div>
+          <label class="block text-xs font-medium text-zinc-700 mb-1">Stripe Payment Link / Checkout URL (Optional)</label>
+          <input type="url" id="settings-stripe-url" placeholder="https://buy.stripe.com/..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm" />
+        </div>
+        <label class="flex items-center gap-2.5 text-xs text-zinc-700 cursor-pointer select-none">
+          <input type="checkbox" id="settings-stripe-enabled" class="rounded border-zinc-300 text-obsidian focus:ring-obsidian" />
+          <span>Redirect customers to Stripe Checkout link after order placement</span>
+        </label>
+        <div class="flex justify-end">
+          <button type="submit" class="px-5 py-2.5 rounded-full border border-obsidian text-obsidian hover:bg-obsidian hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors">
+            Save Payment Settings
+          </button>
+        </div>
+      </form>
+
+      <!-- Owner Cloud Backup & Restore Section -->
+      <div class="space-y-3.5 pt-5 border-t border-zinc-200">
+        <div class="flex items-center justify-between gap-2">
+          <p class="text-xs uppercase tracking-[0.2em] text-obsidian font-semibold">Backup &amp; Device Transfer</p>
+          <span id="cloud-backup-status-pill" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Auto-Saved
+          </span>
+        </div>
+        <p class="text-xs text-zinc-500 leading-relaxed">
+          All menus, stock levels, ingredients, and customer orders save automatically. Create a restore point anytime or download a backup file to save to Google Drive, iCloud, or share with staff devices.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <button type="button" onclick="createCloudBackupSnapshot()" class="px-4 py-2.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-[11px] font-semibold uppercase tracking-wider transition-colors">
+            Save Snapshot
+          </button>
+          <button type="button" onclick="exportBackupFile()" class="px-4 py-2.5 rounded-full border border-zinc-300 hover:border-obsidian text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors">
+            Download File
+          </button>
+          <button type="button" onclick="triggerBackupFileImport()" class="px-4 py-2.5 rounded-full border border-zinc-300 hover:border-obsidian text-obsidian text-[11px] font-semibold uppercase tracking-wider transition-colors">
+            Restore File
+          </button>
+          <input type="file" id="backup-file-input" accept=".json,application/json" onchange="handleImportBackupFile(event)" class="hidden" />
+        </div>
+
+        <div id="cloud-backups-list" class="space-y-2 pt-1">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: CUSTOM CONFIRMATION DIALOG                         -->
+  <!-- ========================================================= -->
+  <div id="confirm-action-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div onclick="closeConfirmModal()" class="fixed inset-0 bg-black/45 backdrop-blur-xs"></div>
+    <div class="relative z-10 w-full max-w-sm bg-white border border-zinc-200 rounded-3xl p-6 shadow-2xl text-center">
+      <h4 id="confirm-modal-title" class="font-serif text-2xl font-semibold text-obsidian mb-2">Confirm Removal</h4>
+      <p id="confirm-modal-message" class="text-xs text-zinc-600 mb-6 leading-relaxed">Are you sure you want to remove this item?</p>
+      <div class="flex items-center justify-center gap-3">
+        <button type="button" onclick="closeConfirmModal()" class="flex-1 py-2.5 px-4 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-700 hover:border-obsidian">Cancel</button>
+        <button type="button" id="confirm-modal-execute-btn" class="flex-1 py-2.5 px-4 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Toast Notification Banner -->
+  <div id="toast-banner" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-2">
+    <div class="bg-obsidian text-white px-5 py-3 rounded-full shadow-xl border border-zinc-700 flex items-center gap-2.5 text-xs font-medium whitespace-nowrap">
+      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+      <span id="toast-message">Action completed</span>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CLEAN SLATE CONFIGURATION & PERSISTENT STORAGE
+    // =========================================================================
+    const DEFAULT_STAFF_PASSWORD = 'elevet2026';
+    const LOCAL_STORAGE_KEY = 'elevet_atelier_state_v1';
+
+    // =========================================================================
+    // 2. APPLICATION STATE & CLOUD SYNC SETUP
+    // =========================================================================
+    let currentStaffPassword = DEFAULT_STAFF_PASSWORD;
+    let stripeConfig = { enabled: false, paymentLink: '' };
+    let customBlendBasePrice = 7.50;
+
+    let menuItems = [];
+    let orders = [];
+    let supplies = [];
+    let cloudBackups = [];
+    let bag = [];
+    let trackedOrderIds = new Set();
+
+    let customBuilderState = {
+      selectedIds: [],
+      customName: '',
+      qty: 1
+    };
+
+    let isStaffUnlocked = false;
+    let activeView = 'menu';
+    let selectedCategory = 'All';
+    let selectedOrderFilter = 'All';
+    let selectedInventoryTab = 'all';
+    let selectedSupplyFilter = 'All';
+    let deferredInstallPrompt = null;
+    let toastTimer = null;
+    let pendingConfirmCallback = null;
+
+    // Cloud Sync State
+    let db = null;
+    let fsOps = null;
+    let currentUser = null;
+    let cloudEnabled = false;
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'elevet-juice-atelier';
+
+    function loadLocalState() {
+      try {
+        const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        if (typeof data.staffPassword === 'string' && data.staffPassword.length >= 4) {
+          currentStaffPassword = data.staffPassword;
+        }
+        if (typeof data.customBlendBasePrice === 'number' && data.customBlendBasePrice > 0) {
+          customBlendBasePrice = data.customBlendBasePrice;
+        }
+        if (data.stripeConfig && typeof data.stripeConfig === 'object') {
+          stripeConfig = {
+            enabled: Boolean(data.stripeConfig.enabled),
+            paymentLink: data.stripeConfig.paymentLink || ''
+          };
+        }
+        if (Array.isArray(data.menuItems)) menuItems = data.menuItems;
+        if (Array.isArray(data.supplies)) supplies = data.supplies;
+        if (Array.isArray(data.orders)) orders = data.orders;
+        if (Array.isArray(data.cloudBackups)) cloudBackups = data.cloudBackups;
+        if (Array.isArray(data.trackedOrderIds)) {
+          trackedOrderIds = new Set(data.trackedOrderIds);
+        }
+      } catch (err) {
+        console.warn('Local state load notice:', err.message);
+      }
+    }
+
+    function saveLocalState() {
+      try {
+        const payload = {
+          staffPassword: currentStaffPassword,
+          customBlendBasePrice,
+          stripeConfig,
+          menuItems,
+          supplies,
+          orders,
+          cloudBackups,
+          trackedOrderIds: Array.from(trackedOrderIds)
+        };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(payload));
+      } catch (err) {
+        console.warn('Local state save notice:', err.message);
+      }
+    }
+
+    async function initCloudSync() {
+      try {
+        if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+          updateSyncBadge('Live Menu Availability', false);
+          updateBackupStatusUI(false);
+          return;
+        }
+
+        const [appMod, authMod, fsMod] = await Promise.all([
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"),
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"),
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js")
+        ]);
+
+        fsOps = fsMod;
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = appMod.initializeApp(firebaseConfig);
+        const auth = authMod.getAuth(app);
+        db = fsMod.getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await authMod.signInWithCustomToken(auth, __initial_auth_token);
+          currentUser = cred.user;
+        } else {
+          const cred = await authMod.signInAnonymously(auth);
+          currentUser = cred.user;
+        }
+
+        if (!currentUser) return;
+        cloudEnabled = true;
+        updateSyncBadge('Live Cloud Sync Active', true);
+        updateBackupStatusUI(true);
+
+        const settingsRef = fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'atelier');
+        fsOps.onSnapshot(settingsRef, (docSnap) => {
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            if (data.staffPassword) currentStaffPassword = data.staffPassword;
+            if (typeof data.customBlendBasePrice === 'number' && data.customBlendBasePrice > 0) {
+              customBlendBasePrice = data.customBlendBasePrice;
+            }
+            stripeConfig = {
+              enabled: Boolean(data.stripeEnabled),
+              paymentLink: data.stripePaymentLink || ''
+            };
+            saveLocalState();
+            updateCheckoutPaymentLabel();
+          }
+        }, (err) => {
+          console.warn('Settings sync listener notice:', err.message);
+        });
+
+        const menuCol = fsOps.collection(db, 'artifacts', appId, 'public', 'data', 'menu');
+        fsOps.onSnapshot(menuCol, (snapshot) => {
+          const loaded = [];
+          snapshot.forEach((docSnap) => loaded.push(docSnap.data()));
+          loaded.sort((a, b) => String(a.number || '').localeCompare(String(b.number || '')));
+          menuItems = loaded;
+          saveLocalState();
+          sanitizeBagAgainstStock();
+          renderAll();
+        }, (err) => {
+          console.warn('Menu sync listener notice:', err.message);
+        });
+
+        const ordersCol = fsOps.collection(db, 'artifacts', appId, 'public', 'data', 'orders');
+        fsOps.onSnapshot(ordersCol, (snapshot) => {
+          const loadedOrders = [];
+          snapshot.forEach((docSnap) => loadedOrders.push(docSnap.data()));
+          loadedOrders.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+          orders = loadedOrders;
+          saveLocalState();
+          renderAll();
+        }, (err) => {
+          console.warn('Orders sync listener notice:', err.message);
+        });
+
+        const suppliesCol = fsOps.collection(db, 'artifacts', appId, 'public', 'data', 'supplies');
+        fsOps.onSnapshot(suppliesCol, (snapshot) => {
+          const loadedSupplies = [];
+          snapshot.forEach((docSnap) => loadedSupplies.push(docSnap.data()));
+          loadedSupplies.sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
+          supplies = loadedSupplies;
+          saveLocalState();
+          sanitizeBagAgainstStock();
+          renderAll();
+          if (!document.getElementById('custom-juice-modal')?.classList.contains('hidden')) {
+            renderCustomJuiceBuilder();
+          }
+        }, (err) => {
+          console.warn('Supplies sync listener notice:', err.message);
+        });
+
+        const backupsCol = fsOps.collection(db, 'artifacts', appId, 'public', 'data', 'backups');
+        fsOps.onSnapshot(backupsCol, (snapshot) => {
+          const loadedBackups = [];
+          snapshot.forEach((docSnap) => loadedBackups.push(docSnap.data()));
+          loadedBackups.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+          cloudBackups = loadedBackups;
+          saveLocalState();
+          renderCloudBackupsList();
+        }, (err) => {
+          console.warn('Backups sync listener notice:', err.message);
+        });
+
+      } catch (error) {
+        console.warn('Running with local device storage:', error.message);
+        updateSyncBadge('Live Menu Availability', false);
+        updateBackupStatusUI(false);
+      }
+    }
+
+    function updateSyncBadge(label, isLive) {
+      const syncPill = document.getElementById('sync-status-pill');
+      if (!syncPill) return;
+      syncPill.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${isLive ? 'bg-emerald-500 animate-pulse' : 'bg-emerald-500'}"></span>
+        ${escapeHtml(label)}
+      `;
+    }
+
+    function updateBackupStatusUI(isLive) {
+      const pill = document.getElementById('cloud-backup-status-pill');
+      if (!pill) return;
+      if (isLive) {
+        pill.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
+        pill.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live Cloud Sync';
+      } else {
+        pill.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
+        pill.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Auto-Saved on Device';
+      }
+    }
+
+    function updateCheckoutPaymentLabel() {
+      const labelEl = document.getElementById('checkout-payment-method-label');
+      if (!labelEl) return;
+      labelEl.textContent = stripeConfig.enabled && stripeConfig.paymentLink
+        ? 'Stripe Checkout Enabled'
+        : 'Order Confirmation • Stripe Ready';
+    }
+
+    // =========================================================================
+    // 3. PWA MANIFEST & INSTALL HANDLER
+    // =========================================================================
+    function initPwaManifest() {
+      try {
+        const manifest = {
+          name: 'elevét — Cold-Pressed Juice Atelier',
+          short_name: 'elevét',
+          description: 'Cold-pressed juice ordering, bespoke juice builder, live tracking, and atelier stock control.',
+          start_url: '.',
+          display: 'standalone',
+          background_color: '#FFFFFF',
+          theme_color: '#FFFFFF',
+          icons: [
+            {
+              src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%2309090B'/%3E%3Ctext x='256' y='295' font-family='Georgia, serif' font-size='150' font-style='italic' fill='%23FFFFFF' text-anchor='middle'%3Ee%3C/text%3E%3C/svg%3E",
+              sizes: '512x512',
+              type: 'image/svg+xml'
+            }
+          ]
+        };
+        const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestUrl = URL.createObjectURL(blob);
+        const manifestLink = document.getElementById('pwa-manifest');
+        if (manifestLink) manifestLink.setAttribute('href', manifestUrl);
+      } catch (e) {
+        console.warn('PWA manifest setup notice:', e.message);
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+      });
+    }
+
+    window.handleInstallClick = async function () {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+      } else {
+        showToast('Add to Home Screen via your browser Share / Menu icon');
+      }
+    };
+
+    // =========================================================================
+    // 4. ROLE ACCESS CONTROL (CUSTOMER STOREFRONT vs. STAFF PORTAL)
+    // =========================================================================
+    window.openStaffGate = function () {
+      if (isStaffUnlocked) {
+        switchView('orders');
+        return;
+      }
+      const modal = document.getElementById('staff-gate-modal');
+      const input = document.getElementById('staff-pin-input');
+      const err = document.getElementById('staff-pin-error');
+      if (err) err.classList.add('hidden');
+      if (input) {
+        input.type = 'password';
+        input.value = '';
+      }
+      if (modal) modal.classList.remove('hidden');
+      setTimeout(() => input && input.focus(), 50);
+    };
+
+    window.toggleGatePasswordVisibility = function () {
+      const input = document.getElementById('staff-pin-input');
+      if (!input) return;
+      input.type = input.type === 'password' ? 'text' : 'password';
+    };
+
+    window.closeStaffGate = function () {
+      const modal = document.getElementById('staff-gate-modal');
+      if (modal) modal.classList.add('hidden');
+    };
+
+    window.submitStaffPin = function (event) {
+      event.preventDefault();
+      const input = document.getElementById('staff-pin-input');
+      const err = document.getElementById('staff-pin-error');
+      const card = document.getElementById('staff-gate-card');
+      const entered = (input?.value || '').trim();
+
+      if (entered === currentStaffPassword) {
+        isStaffUnlocked = true;
+        closeStaffGate();
+        updateRoleChrome();
+        switchView(menuItems.length === 0 ? 'inventory' : 'orders');
+        showToast('Staff & Owner Mode unlocked');
+      } else {
+        if (err) err.classList.remove('hidden');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+        if (card) {
+          card.classList.remove('animate-shake');
+          void card.offsetWidth;
+          card.classList.add('animate-shake');
+        }
+      }
+    };
+
+    window.exitStaffMode = function () {
+      isStaffUnlocked = false;
+      updateRoleChrome();
+      switchView('menu');
+      showToast('Returned to Customer Storefront');
+    };
+
+    function updateRoleChrome() {
+      const staffBanner = document.getElementById('staff-mode-banner');
+      const desktopCustNav = document.getElementById('nav-desktop-customer');
+      const desktopStaffNav = document.getElementById('nav-desktop-staff');
+      const mobileCustNav = document.getElementById('nav-mobile-customer');
+      const mobileStaffNav = document.getElementById('nav-mobile-staff');
+      const staffPortalBtn = document.getElementById('staff-portal-btn');
+      const ownerMenuToolbar = document.getElementById('owner-menu-toolbar');
+
+      if (isStaffUnlocked) {
+        staffBanner?.classList.remove('hidden');
+        ownerMenuToolbar?.classList.remove('hidden');
+        desktopCustNav?.classList.add('hidden');
+        desktopStaffNav?.classList.remove('hidden');
+        desktopStaffNav?.classList.add('md:flex');
+        mobileCustNav?.classList.add('hidden');
+        mobileStaffNav?.classList.remove('hidden');
+        staffPortalBtn?.classList.add('hidden');
+      } else {
+        staffBanner?.classList.add('hidden');
+        ownerMenuToolbar?.classList.add('hidden');
+        desktopCustNav?.classList.remove('hidden');
+        desktopStaffNav?.classList.add('hidden');
+        desktopStaffNav?.classList.remove('md:flex');
+        mobileCustNav?.classList.remove('hidden');
+        mobileStaffNav?.classList.add('hidden');
+        staffPortalBtn?.classList.remove('hidden');
+      }
+    }
+
+    window.switchView = function (view) {
+      if ((view === 'orders' || view === 'inventory') && !isStaffUnlocked) {
+        openStaffGate();
+        return;
+      }
+
+      activeView = view;
+
+      ['menu', 'track', 'orders', 'inventory'].forEach((v) => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.toggle('hidden', v !== view);
+      });
+
+      const custMenuBtn = document.getElementById('nav-cust-menu');
+      const custTrackBtn = document.getElementById('nav-cust-track');
+      if (custMenuBtn && custTrackBtn) {
+        custMenuBtn.className = view === 'menu'
+          ? 'px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-obsidian text-white shadow-sm'
+          : 'px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian';
+        custTrackBtn.className = view === 'track'
+          ? 'px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-obsidian text-white shadow-sm flex items-center gap-2'
+          : 'px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian flex items-center gap-2';
+      }
+
+      ['orders', 'inventory', 'menu'].forEach((tab) => {
+        const btn = document.getElementById(`nav-staff-${tab}`);
+        if (!btn) return;
+        const isActive = view === tab;
+        btn.className = isActive
+          ? 'px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-obsidian text-white shadow-sm flex items-center gap-2'
+          : 'px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-zinc-600 hover:text-obsidian flex items-center gap-2';
+      });
+
+      const mobCustMenu = document.getElementById('nav-mob-cust-menu');
+      const mobCustTrack = document.getElementById('nav-mob-cust-track');
+      if (mobCustMenu) mobCustMenu.className = `flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl transition-colors ${view === 'menu' ? 'text-obsidian font-semibold' : 'text-zinc-500 font-medium'}`;
+      if (mobCustTrack) mobCustTrack.className = `relative flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl transition-colors ${view === 'track' ? 'text-obsidian font-semibold' : 'text-zinc-500 font-medium'}`;
+
+      ['orders', 'inventory', 'menu'].forEach((tab) => {
+        const btn = document.getElementById(`nav-mob-staff-${tab}`);
+        if (!btn) return;
+        const isActive = view === tab;
+        btn.className = `relative flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl transition-colors ${isActive ? 'text-obsidian font-semibold' : 'text-zinc-500 font-medium'}`;
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderAll();
+    };
+
+    // =========================================================================
+    // 5. CUSTOMER BESPOKE JUICE BUILDER STUDIO
+    // =========================================================================
+    function inferIngredientJuiceColor(name = '', category = '') {
+      const lower = name.toLowerCase();
+      if (lower.includes('kale') || lower.includes('spinach') || lower.includes('cucumber') || lower.includes('celery') || lower.includes('matcha') || lower.includes('mint') || lower.includes('lime') || lower.includes('green')) {
+        return '#10B981';
+      }
+      if (lower.includes('pomegranate') || lower.includes('berry') || lower.includes('strawberry') || lower.includes('raspberry') || lower.includes('hibiscus') || lower.includes('beet') || lower.includes('watermelon')) {
+        return '#E11D48';
+      }
+      if (lower.includes('dragonfruit') || lower.includes('pitaya')) {
+        return '#EC4899';
+      }
+      if (lower.includes('blood orange') || lower.includes('carrot') || lower.includes('papaya') || lower.includes('mango')) {
+        return '#F97316';
+      }
+      if (lower.includes('turmeric') || lower.includes('ginger') || lower.includes('orange') || lower.includes('pineapple') || lower.includes('yuzu') || lower.includes('lemon')) {
+        return '#F59E0B';
+      }
+      return category === 'Fruits & Produce' ? '#10B981' : '#D97706';
+    }
+
+    function getCustomBlendVisualColor(selectedSupplies) {
+      if (!selectedSupplies || selectedSupplies.length === 0) return '#F59E0B';
+      const primary = selectedSupplies[0];
+      return inferIngredientJuiceColor(primary.name, primary.category);
+    }
+
+    window.openCustomJuiceModal = function () {
+      customBuilderState = {
+        selectedIds: [],
+        customName: '',
+        qty: 1
+      };
+      renderCustomJuiceBuilder();
+      document.getElementById('custom-juice-modal')?.classList.remove('hidden');
+    };
+
+    window.closeCustomJuiceModal = function () {
+      document.getElementById('custom-juice-modal')?.classList.add('hidden');
+    };
+
+    window.toggleCustomIngredient = function (supplyId) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup || Number(sup.stock) <= 0) return;
+
+      const idx = customBuilderState.selectedIds.indexOf(supplyId);
+      if (idx !== -1) {
+        customBuilderState.selectedIds.splice(idx, 1);
+      } else {
+        const currentSelected = customBuilderState.selectedIds
+          .map((id) => supplies.find((s) => s.id === id))
+          .filter(Boolean);
+
+        if (sup.category === 'Fruits & Produce') {
+          const fruitCount = currentSelected.filter((s) => s.category === 'Fruits & Produce').length;
+          if (fruitCount >= 3) {
+            showToast('Select up to 3 fruits & produce items per bottle');
+            return;
+          }
+        } else if (sup.category === 'Roots & Botanicals') {
+          const rootCount = currentSelected.filter((s) => s.category === 'Roots & Botanicals').length;
+          if (rootCount >= 2) {
+            showToast('Select up to 2 roots & botanical boosts per bottle');
+            return;
+          }
+        }
+        customBuilderState.selectedIds.push(supplyId);
+      }
+      renderCustomJuiceBuilder();
+    };
+
+    window.updateCustomBlendNameInput = function (val) {
+      customBuilderState.customName = val;
+      const labelEl = document.getElementById('custom-bottle-svg-label');
+      if (labelEl) {
+        labelEl.textContent = (val.trim() || 'BESPOKE').toUpperCase().slice(0, 11);
+      }
+    };
+
+    window.adjustCustomBuilderQty = function (delta) {
+      customBuilderState.qty = Math.max(1, Math.min(12, customBuilderState.qty + delta));
+      renderCustomJuiceBuilder();
+    };
+
+    window.addCustomJuiceToBag = function () {
+      const selectedSupplies = customBuilderState.selectedIds
+        .map((id) => supplies.find((s) => s.id === id && Number(s.stock) > 0))
+        .filter(Boolean);
+
+      if (selectedSupplies.length === 0) {
+        showToast('Please select at least 1 ingredient for your blend');
+        return;
+      }
+
+      const rawLabel = (customBuilderState.customName || '').trim();
+      const blendName = rawLabel ? `${rawLabel} (Bespoke)` : 'Bespoke Cold-Press';
+      const ingredientsStr = selectedSupplies.map((s) => s.name).join(', ');
+      const juiceColor = getCustomBlendVisualColor(selectedSupplies);
+      const customId = `CUSTOM-${Date.now()}-${Math.random().toString(36).slice(2, 5).toUpperCase()}`;
+
+      bag.push({
+        id: customId,
+        isCustom: true,
+        name: blendName,
+        ingredients: ingredientsStr,
+        ingredientIds: selectedSupplies.map((s) => s.id),
+        juiceColor,
+        price: Number(customBlendBasePrice),
+        qty: customBuilderState.qty
+      });
+
+      closeCustomJuiceModal();
+      renderBag();
+      toggleBagDrawer(true);
+      showToast(`Added ${blendName} to your chilled bag`);
+    };
+
+    function renderCustomJuiceBuilder() {
+      const container = document.getElementById('custom-juice-builder-body');
+      if (!container) return;
+
+      const availableProduce = supplies.filter((s) => s.category === 'Fruits & Produce' && Number(s.stock) > 0);
+      const availableBotanicals = supplies.filter((s) => s.category === 'Roots & Botanicals' && Number(s.stock) > 0);
+
+      if (availableProduce.length === 0 && availableBotanicals.length === 0) {
+        container.innerHTML = `
+          <div class="border border-dashed border-zinc-300 rounded-3xl p-8 sm:p-10 text-center bg-zinc-50/60">
+            <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-400 font-semibold mb-2">Cold-Store Larder</p>
+            <h4 class="font-serif text-2xl font-semibold text-obsidian mb-2">Fresh Produce Currently Being Stocked</h4>
+            <p class="text-xs sm:text-sm text-zinc-500 max-w-md mx-auto mb-6 leading-relaxed">
+              Our bespoke pressing ingredients will appear here as soon as fresh fruits and botanicals are checked into our cold store.
+            </p>
+            ${
+              isStaffUnlocked
+                ? `<button onclick="closeCustomJuiceModal(); switchView('inventory'); toggleNewSupplyModal(true);" class="px-5 py-2.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors">
+                    + Add Fruits &amp; Botanicals to Stock
+                  </button>`
+                : `<button onclick="closeCustomJuiceModal()" class="px-5 py-2.5 rounded-full border border-zinc-300 hover:border-obsidian text-xs font-semibold text-obsidian transition-colors">
+                    Back to Menu
+                  </button>`
+            }
+          </div>
+        `;
+        return;
+      }
+
+      customBuilderState.selectedIds = customBuilderState.selectedIds.filter((id) =>
+        supplies.some((s) => s.id === id && Number(s.stock) > 0)
+      );
+
+      const selectedSupplies = customBuilderState.selectedIds
+        .map((id) => supplies.find((s) => s.id === id))
+        .filter(Boolean);
+
+      const previewColor = getCustomBlendVisualColor(selectedSupplies);
+      const bottleTag = (customBuilderState.customName.trim() || 'BESPOKE').toUpperCase().slice(0, 11);
+      const lineTotal = (Number(customBlendBasePrice) * customBuilderState.qty).toFixed(2);
+
+      const renderIngredientChip = (sup) => {
+        const isSelected = customBuilderState.selectedIds.includes(sup.id);
+        const dotColor = inferIngredientJuiceColor(sup.name, sup.category);
+        return `
+          <button
+            type="button"
+            onclick="toggleCustomIngredient('${sup.id}')"
+            class="flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-2xl border text-left transition-all ${
+              isSelected
+                ? 'border-obsidian bg-obsidian text-white shadow-xs'
+                : 'border-zinc-200 bg-white hover:border-obsidian text-obsidian'
+            }"
+          >
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${dotColor};"></span>
+              <span class="text-xs font-semibold truncate">${escapeHtml(sup.name)}</span>
+            </div>
+            <span class="text-[11px] font-bold shrink-0 ${isSelected ? 'text-white' : 'text-zinc-400'}">
+              ${isSelected ? '&check;' : '+'}
+            </span>
+          </button>
+        `;
+      };
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          <div class="border border-zinc-200 rounded-3xl p-5 bg-zinc-50/80 flex flex-col sm:flex-row items-center gap-5">
+            <svg viewBox="0 0 96 144" fill="none" class="w-16 h-24 shrink-0 select-none">
+              <rect x="36" y="8" width="24" height="10" rx="3" fill="#09090B" />
+              <path d="M39 18H57L62 36H34L39 18Z" stroke="#09090B" stroke-width="1.5" fill="#FFFFFF" />
+              <rect x="26" y="36" width="44" height="98" rx="14" stroke="#09090B" stroke-width="1.5" fill="#FFFFFF" />
+              <path d="M28 54H68V120C68 126.627 62.6274 132 56 132H40C33.3726 132 28 126.627 28 120V54Z" fill="${previewColor}" fill-opacity="0.88" />
+              <ellipse cx="48" cy="54" rx="20" ry="2.5" fill="#FFFFFF" fill-opacity="0.45" />
+              <rect x="31" y="70" width="34" height="44" rx="4" fill="#FFFFFF" stroke="#09090B" stroke-width="1" />
+              <text x="48" y="87" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#09090B" text-anchor="middle">elevét</text>
+              <line x1="37" y1="93" x2="59" y2="93" stroke="#D4D4D8" stroke-width="0.8" />
+              <text id="custom-bottle-svg-label" x="48" y="105" font-family="monospace" font-size="6.8" font-weight="bold" fill="#09090B" text-anchor="middle">${escapeHtml(bottleTag)}</text>
+            </svg>
+
+            <div class="flex-1 text-center sm:text-left">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-obsidian text-white">330ml Cold-Pressed</span>
+                <span class="font-serif text-xl font-semibold text-obsidian tabular-nums">&pound;${Number(customBlendBasePrice).toFixed(2)} <span class="font-sans text-[11px] font-normal text-zinc-500">/ bottle</span></span>
+              </div>
+              <p class="text-xs text-zinc-600 leading-relaxed">
+                ${
+                  selectedSupplies.length > 0
+                    ? `<span class="font-semibold text-obsidian">Selected Recipe:</span> ${escapeHtml(selectedSupplies.map((s) => s.name).join(' • '))}`
+                    : 'Tap ingredients below to compose your fresh cold-pressed recipe.'
+                }
+              </p>
+            </div>
+          </div>
+
+          ${
+            availableProduce.length > 0
+              ? `<div>
+                  <div class="flex items-center justify-between mb-2.5">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-obsidian">1. Choose Fruits &amp; Produce</p>
+                    <span class="text-[11px] text-zinc-500">Up to 3 bases</span>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    ${availableProduce.map(renderIngredientChip).join('')}
+                  </div>
+                </div>`
+              : ''
+          }
+
+          ${
+            availableBotanicals.length > 0
+              ? `<div>
+                  <div class="flex items-center justify-between mb-2.5">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-obsidian">2. Add Roots &amp; Botanicals</p>
+                    <span class="text-[11px] text-zinc-500">Up to 2 boosts</span>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    ${availableBotanicals.map(renderIngredientChip).join('')}
+                  </div>
+                </div>`
+              : ''
+          }
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-zinc-100">
+            <div class="sm:col-span-2">
+              <label for="custom-blend-name-input" class="block text-xs font-medium text-zinc-700 mb-1">Custom Bottle Label Name (Optional)</label>
+              <input
+                type="text"
+                id="custom-blend-name-input"
+                maxlength="24"
+                value="${escapeHtml(customBuilderState.customName)}"
+                oninput="updateCustomBlendNameInput(this.value)"
+                placeholder="e.g. Morning Reset or Your Name"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 focus:border-obsidian focus:outline-none text-sm bg-white"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-zinc-700 mb-1">Bottles</label>
+              <div class="flex items-center justify-between bg-zinc-100 border border-zinc-200 rounded-xl p-1 h-[42px]">
+                <button type="button" onclick="adjustCustomBuilderQty(-1)" class="w-8 h-8 rounded-lg bg-white border border-zinc-200 hover:border-obsidian font-bold text-obsidian">&minus;</button>
+                <span class="text-xs font-bold tabular-nums text-obsidian">${customBuilderState.qty}</span>
+                <button type="button" onclick="adjustCustomBuilderQty(1)" class="w-8 h-8 rounded-lg bg-white border border-zinc-200 hover:border-obsidian font-bold text-obsidian">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-zinc-200">
+            <button type="button" onclick="closeCustomJuiceModal()" class="w-full sm:w-auto px-5 py-3 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-700 hover:border-obsidian">
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="addCustomJuiceToBag()"
+              ${selectedSupplies.length === 0 ? 'disabled' : ''}
+              class="w-full sm:w-auto flex-1 sm:flex-initial px-7 py-3.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 disabled:bg-zinc-200 disabled:text-zinc-400 disabled:cursor-not-allowed text-xs font-semibold uppercase tracking-widest transition-all"
+            >
+              Add Bespoke Blend &bull; &pound;${lineTotal}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 6. CUSTOMER MENU RENDERING & BOTTLE ILLUSTRATION
+    // =========================================================================
+    function renderBottleSvg(juiceColor = '#F59E0B', number = '01') {
+      return `
+        <svg viewBox="0 0 96 144" fill="none" class="w-16 h-24 shrink-0 select-none">
+          <rect x="36" y="8" width="24" height="10" rx="3" fill="#09090B" />
+          <path d="M39 18H57L62 36H34L39 18Z" stroke="#09090B" stroke-width="1.5" fill="#FFFFFF" />
+          <rect x="26" y="36" width="44" height="98" rx="14" stroke="#09090B" stroke-width="1.5" fill="#FFFFFF" />
+          <path d="M28 54H68V120C68 126.627 62.6274 132 56 132H40C33.3726 132 28 126.627 28 120V54Z" fill="${juiceColor}" fill-opacity="0.88" />
+          <ellipse cx="48" cy="54" rx="20" ry="2.5" fill="#FFFFFF" fill-opacity="0.45" />
+          <rect x="31" y="70" width="34" height="44" rx="4" fill="#FFFFFF" stroke="#09090B" stroke-width="1" />
+          <text x="48" y="87" font-family="Georgia, serif" font-style="italic" font-size="10" fill="#09090B" text-anchor="middle">elevét</text>
+          <line x1="37" y1="93" x2="59" y2="93" stroke="#D4D4D8" stroke-width="0.8" />
+          <text x="48" y="105" font-family="monospace" font-size="8.5" font-weight="bold" fill="#09090B" text-anchor="middle">NO.${escapeHtml(number)}</text>
+        </svg>
+      `;
+    }
+
+    window.setCategoryFilter = function (category) {
+      selectedCategory = category;
+      renderMenu();
+    };
+
+    function renderMenu() {
+      const filterContainer = document.getElementById('category-filters');
+      const grid = document.getElementById('menu-grid');
+      const countEl = document.getElementById('menu-visible-count');
+      if (!filterContainer || !grid) return;
+
+      const categories = ['All', 'Detox', 'Immunity', 'Energy', 'Glow'];
+      filterContainer.innerHTML = categories.map((cat) => {
+        const active = selectedCategory === cat;
+        return `
+          <button onclick="setCategoryFilter('${cat}')" class="px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
+            active
+              ? 'bg-obsidian text-white shadow-xs'
+              : 'bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian hover:text-obsidian'
+          }">
+            ${cat}
+          </button>
+        `;
+      }).join('');
+
+      const filtered = selectedCategory === 'All'
+        ? menuItems
+        : menuItems.filter((item) => item.category === selectedCategory);
+
+      if (countEl) countEl.textContent = filtered.length;
+
+      if (menuItems.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full border border-dashed border-zinc-300 rounded-3xl p-10 sm:p-14 bg-white text-center">
+            <p class="text-[11px] uppercase tracking-[0.25em] text-zinc-400 font-semibold mb-2">Fresh Pressing Schedule</p>
+            <h3 class="font-serif text-3xl font-semibold text-obsidian mb-2">Signature Menu Being Pressed</h3>
+            <p class="text-xs sm:text-sm text-zinc-500 max-w-md mx-auto mb-6 leading-relaxed">
+              Our seasonal cold-pressed blends will appear here as soon as they are released, or you can craft your own bespoke juice from our live ingredients now.
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button onclick="openCustomJuiceModal()" class="px-6 py-3 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-widest transition-colors">
+                + Create Your Own Blend
+              </button>
+              ${
+                isStaffUnlocked
+                  ? `<button onclick="switchView('inventory'); toggleNewJuiceModal(true);" class="px-6 py-3 rounded-full border border-zinc-300 hover:border-obsidian text-obsidian text-xs font-semibold uppercase tracking-widest transition-colors">
+                      + Add Signature Menu Blend
+                    </button>`
+                  : ''
+              }
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full border border-zinc-200 rounded-3xl p-10 bg-white text-center">
+            <p class="font-serif text-2xl font-semibold text-obsidian mb-1">No blends in "${escapeHtml(selectedCategory)}"</p>
+            <p class="text-xs text-zinc-500">Select "All" above to view every available cold-pressed juice.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item) => {
+        const stock = Number(item.stock || 0);
+        const inBag = bag.find((b) => !b.isCustom && b.id === item.id)?.qty || 0;
+        const remainingAvailable = Math.max(0, stock - inBag);
+        const isOut = stock <= 0;
+        const isLow = stock > 0 && stock <= 5;
+
+        const stockPill = isOut
+          ? `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-zinc-100 text-zinc-500">Sold Out</span>`
+          : isLow
+            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Only ${stock} left</span>`
+            : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-zinc-50 text-zinc-700 border border-zinc-200"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Available (${stock})</span>`;
+
+        return `
+          <article class="border border-zinc-200 hover:border-obsidian rounded-3xl p-6 bg-white transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-5">
+                <span class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-zinc-500">
+                  <span class="w-2 h-2 rounded-full" style="background-color: ${item.juiceColor || '#F59E0B'};"></span>
+                  ${escapeHtml(item.category)}
+                </span>
+                ${stockPill}
+              </div>
+
+              <div class="flex items-center gap-5 mb-4">
+                ${renderBottleSvg(item.juiceColor, item.number)}
+                <div>
+                  <h3 class="font-serif text-2xl font-semibold text-obsidian leading-tight mb-1">${escapeHtml(item.name)}</h3>
+                  <p class="font-serif text-xl font-medium text-obsidian tabular-nums mb-2">&pound;${Number(item.price).toFixed(2)} <span class="font-sans text-[11px] text-zinc-400 font-normal">/ 330ml</span></p>
+                  <p class="text-xs text-zinc-500 italic leading-relaxed">${escapeHtml(item.notes || '')}</p>
+                </div>
+              </div>
+
+              <p class="text-xs text-zinc-600 leading-relaxed border-t border-zinc-100 pt-3 mb-4">${escapeHtml(item.ingredients || '')}</p>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 pt-2">
+              ${
+                inBag > 0
+                  ? `<div class="flex items-center justify-between flex-1 bg-zinc-100 border border-zinc-200 rounded-full p-1">
+                      <button onclick="updateBagQty('${item.id}', -1)" class="w-9 h-9 rounded-full bg-white border border-zinc-200 hover:border-obsidian flex items-center justify-center font-bold text-obsidian transition-colors">&minus;</button>
+                      <span class="text-xs font-bold uppercase tracking-wider text-obsidian tabular-nums">${inBag} in Bag</span>
+                      <button onclick="updateBagQty('${item.id}', 1)" ${remainingAvailable <= 0 ? 'disabled' : ''} class="w-9 h-9 rounded-full bg-obsidian text-white hover:bg-zinc-800 disabled:bg-zinc-300 disabled:text-zinc-500 flex items-center justify-center font-bold transition-colors">+</button>
+                    </div>`
+                  : `<button onclick="addToBag('${item.id}')" ${isOut ? 'disabled' : ''} class="flex-1 py-3 px-5 rounded-full bg-obsidian text-white hover:bg-zinc-800 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:cursor-not-allowed text-xs font-semibold uppercase tracking-widest transition-all">
+                      ${isOut ? 'Out of Stock' : 'Add to Chilled Bag'}
+                    </button>`
+              }
+              ${
+                isStaffUnlocked
+                  ? `<button onclick="openEditJuiceModal('${item.id}')" class="px-4 py-3 rounded-full border border-zinc-300 hover:border-obsidian text-obsidian text-xs font-semibold transition-colors shrink-0">
+                      Edit
+                    </button>`
+                  : ''
+              }
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 7. CUSTOMER BAG, LIVE STOCK VALIDATION & ORDER SUBMISSION
+    // =========================================================================
+    window.addToBag = function (itemId) {
+      const item = menuItems.find((m) => m.id === itemId);
+      if (!item || Number(item.stock) <= 0) {
+        showToast('This blend is currently sold out');
+        return;
+      }
+      const existing = bag.find((b) => !b.isCustom && b.id === itemId);
+      if (existing) {
+        if (existing.qty >= Number(item.stock)) {
+          showToast(`Maximum available stock (${item.stock}) reached`);
+          return;
+        }
+        existing.qty += 1;
+      } else {
+        bag.push({ id: itemId, qty: 1 });
+      }
+      renderMenu();
+      renderBag();
+      showToast(`Added ${item.name} to bag`);
+    };
+
+    window.updateBagQty = function (itemId, delta) {
+      const entryIdx = bag.findIndex((b) => b.id === itemId);
+      if (entryIdx === -1) return;
+
+      const entry = bag[entryIdx];
+      const nextQty = entry.qty + delta;
+
+      if (nextQty <= 0) {
+        bag.splice(entryIdx, 1);
+      } else if (entry.isCustom) {
+        if (nextQty > 12) {
+          showToast('Maximum 12 bespoke bottles per recipe');
+          return;
+        }
+        entry.qty = nextQty;
+      } else {
+        const item = menuItems.find((m) => m.id === itemId);
+        if (item && nextQty > Number(item.stock)) {
+          showToast(`Only ${item.stock} bottles available`);
+          return;
+        }
+        entry.qty = nextQty;
+      }
+      renderMenu();
+      renderBag();
+    };
+
+    function sanitizeBagAgainstStock() {
+      bag = bag
+        .map((entry) => {
+          if (entry.isCustom) {
+            const allInStock = (entry.ingredientIds || []).every((supId) => {
+              const sup = supplies.find((s) => s.id === supId);
+              return sup && Number(sup.stock) > 0;
+            });
+            return allInStock ? entry : null;
+          }
+          const item = menuItems.find((m) => m.id === entry.id);
+          if (!item || Number(item.stock) <= 0) return null;
+          return { id: entry.id, qty: Math.min(entry.qty, Number(item.stock)) };
+        })
+        .filter(Boolean);
+    }
+
+    window.toggleBagDrawer = function (show) {
+      const drawer = document.getElementById('bag-drawer');
+      if (drawer) {
+        drawer.classList.toggle('hidden', !show);
+        if (show) renderBag();
+      }
+    };
+
+    function renderBag() {
+      const container = document.getElementById('bag-items-container');
+      const countPill = document.getElementById('bag-count-pill');
+      const subtotalEl = document.getElementById('bag-subtotal');
+      const feeEl = document.getElementById('bag-delivery-fee');
+      const totalEl = document.getElementById('bag-total');
+      const submitBtn = document.getElementById('checkout-submit-btn');
+
+      const totalQty = bag.reduce((sum, b) => sum + b.qty, 0);
+      if (countPill) countPill.textContent = totalQty;
+
+      if (!container) return;
+
+      if (bag.length === 0) {
+        container.innerHTML = `
+          <div class="border border-dashed border-zinc-200 rounded-2xl p-8 text-center">
+            <p class="font-serif text-xl text-obsidian mb-1">Your bag is empty</p>
+            <p class="text-xs text-zinc-500">Select signature blends or create your own custom juice to begin your order.</p>
+          </div>
+        `;
+        if (subtotalEl) subtotalEl.textContent = '£0.00';
+        if (feeEl) feeEl.textContent = '£3.50';
+        if (totalEl) totalEl.textContent = '£0.00';
+        if (submitBtn) submitBtn.disabled = true;
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = false;
+
+      let subtotal = 0;
+      container.innerHTML = bag.map((entry) => {
+        if (entry.isCustom) {
+          const lineTotal = Number(entry.price) * entry.qty;
+          subtotal += lineTotal;
+          return `
+            <div class="flex items-center justify-between gap-3 p-3.5 rounded-2xl border border-zinc-200 bg-zinc-50/60">
+              <div class="flex items-center gap-3 min-w-0">
+                <span class="w-2.5 h-10 rounded-full shrink-0" style="background-color: ${entry.juiceColor || '#F59E0B'};"></span>
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <p class="font-serif text-lg font-semibold text-obsidian leading-tight truncate">${escapeHtml(entry.name)}</p>
+                  </div>
+                  <p class="text-[11px] text-zinc-600 truncate">${escapeHtml(entry.ingredients || '')}</p>
+                  <p class="text-xs text-zinc-500 tabular-nums mt-0.5">&pound;${Number(entry.price).toFixed(2)} each</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button type="button" onclick="updateBagQty('${entry.id}', -1)" class="w-7 h-7 rounded-full border border-zinc-300 bg-white hover:border-obsidian flex items-center justify-center text-xs font-bold">&minus;</button>
+                <span class="w-5 text-center text-xs font-bold tabular-nums">${entry.qty}</span>
+                <button type="button" onclick="updateBagQty('${entry.id}', 1)" class="w-7 h-7 rounded-full border border-zinc-300 bg-white hover:border-obsidian flex items-center justify-center text-xs font-bold">+</button>
+              </div>
+            </div>
+          `;
+        }
+
+        const item = menuItems.find((m) => m.id === entry.id);
+        if (!item) return '';
+        const lineTotal = Number(item.price) * entry.qty;
+        subtotal += lineTotal;
+
+        return `
+          <div class="flex items-center justify-between gap-3 p-3.5 rounded-2xl border border-zinc-200 bg-zinc-50/60">
+            <div class="flex items-center gap-3">
+              <span class="w-2.5 h-8 rounded-full shrink-0" style="background-color: ${item.juiceColor || '#F59E0B'};"></span>
+              <div>
+                <p class="font-serif text-lg font-semibold text-obsidian leading-tight">${escapeHtml(item.name)}</p>
+                <p class="text-xs text-zinc-500 tabular-nums">&pound;${Number(item.price).toFixed(2)} each &bull; ${item.stock} available</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="updateBagQty('${item.id}', -1)" class="w-7 h-7 rounded-full border border-zinc-300 bg-white hover:border-obsidian flex items-center justify-center text-xs font-bold">&minus;</button>
+              <span class="w-5 text-center text-xs font-bold tabular-nums">${entry.qty}</span>
+              <button type="button" onclick="updateBagQty('${item.id}', 1)" ${entry.qty >= Number(item.stock) ? 'disabled' : ''} class="w-7 h-7 rounded-full border border-zinc-300 bg-white hover:border-obsidian disabled:opacity-40 flex items-center justify-center text-xs font-bold">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const deliveryFee = subtotal >= 35 ? 0 : 3.50;
+      const grandTotal = subtotal + deliveryFee;
+
+      if (subtotalEl) subtotalEl.textContent = `£${subtotal.toFixed(2)}`;
+      if (feeEl) feeEl.textContent = deliveryFee === 0 ? 'Complimentary' : `£${deliveryFee.toFixed(2)}`;
+      if (totalEl) totalEl.textContent = `£${grandTotal.toFixed(2)}`;
+    }
+
+    window.submitCustomerOrder = async function (event) {
+      event.preventDefault();
+      if (bag.length === 0) return;
+
+      const customerName = document.getElementById('order-customer-name').value.trim();
+      const phone = document.getElementById('order-customer-phone').value.trim();
+      const address = document.getElementById('order-address').value.trim();
+      const postcode = document.getElementById('order-postcode').value.trim().toUpperCase();
+      const windowSlot = document.getElementById('order-window').value;
+      const notes = document.getElementById('order-notes').value.trim();
+
+      const orderItems = [];
+      let subtotal = 0;
+      let customBottlesCount = 0;
+      const ingredientDeductions = {};
+
+      for (const entry of bag) {
+        if (entry.isCustom) {
+          for (const supId of (entry.ingredientIds || [])) {
+            const sup = supplies.find((s) => s.id === supId);
+            if (!sup || Number(sup.stock) <= 0) {
+              showToast('One of your custom blend ingredients just ran out. Bag updated.');
+              sanitizeBagAgainstStock();
+              renderAll();
+              return;
+            }
+            ingredientDeductions[supId] = (ingredientDeductions[supId] || 0) + (0.25 * entry.qty);
+          }
+          customBottlesCount += entry.qty;
+          orderItems.push({
+            id: entry.id,
+            name: entry.name,
+            qty: entry.qty,
+            price: Number(entry.price),
+            isCustom: true,
+            ingredients: entry.ingredients || ''
+          });
+          subtotal += Number(entry.price) * entry.qty;
+        } else {
+          const item = menuItems.find((m) => m.id === entry.id);
+          if (!item || Number(item.stock) < entry.qty) {
+            showToast(`Insufficient stock for ${item ? item.name : 'an item'}. Bag updated.`);
+            sanitizeBagAgainstStock();
+            renderAll();
+            return;
+          }
+          orderItems.push({
+            id: item.id,
+            name: item.name,
+            qty: entry.qty,
+            price: Number(item.price)
+          });
+          subtotal += Number(item.price) * entry.qty;
+        }
+      }
+
+      const deliveryFee = subtotal >= 35 ? 0 : 3.50;
+      const total = Number((subtotal + deliveryFee).toFixed(2));
+      const orderId = `ORD-${String(orders.length + 1).padStart(4, '0')}`;
+
+      const newOrder = {
+        id: orderId,
+        customerName,
+        phone,
+        address,
+        postcode,
+        window: windowSlot,
+        notes,
+        status: 'New',
+        paymentStatus: stripeConfig.enabled && stripeConfig.paymentLink ? 'Stripe Link Sent' : 'Pending Payment',
+        createdAt: Date.now(),
+        items: orderItems,
+        deliveryFee,
+        total
+      };
+
+      const standardLines = orderItems.filter((l) => !l.isCustom);
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.runTransaction(db, async (transaction) => {
+            const snapshots = [];
+            for (const line of standardLines) {
+              const ref = fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', line.id);
+              const snap = await transaction.get(ref);
+              if (!snap.exists() || Number(snap.data().stock) < line.qty) {
+                throw new Error(`Stock changed for ${line.name}`);
+              }
+              snapshots.push({ ref, nextStock: Number(snap.data().stock) - line.qty });
+            }
+            for (const s of snapshots) {
+              transaction.update(s.ref, { stock: s.nextStock });
+            }
+            const orderRef = fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId);
+            transaction.set(orderRef, newOrder);
+          });
+
+          for (const [supId, deductAmt] of Object.entries(ingredientDeductions)) {
+            const sup = supplies.find((s) => s.id === supId);
+            if (sup) {
+              const nextStock = Math.max(0, Number((Number(sup.stock) - deductAmt).toFixed(2)));
+              sup.stock = nextStock;
+              await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supId), { stock: nextStock });
+            }
+          }
+          if (customBottlesCount > 0) {
+            for (const sup of supplies) {
+              if (sup.category === 'Bottles & Labels') {
+                const nextStock = Math.max(0, Number(sup.stock) - customBottlesCount);
+                sup.stock = nextStock;
+                await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', sup.id), { stock: nextStock });
+              }
+            }
+          }
+        } catch (err) {
+          showToast(err.message || 'Could not reserve order items. Please try again.');
+          return;
+        }
+      } else {
+        for (const line of standardLines) {
+          const item = menuItems.find((m) => m.id === line.id);
+          if (item) item.stock = Math.max(0, Number(item.stock) - line.qty);
+        }
+        for (const [supId, deductAmt] of Object.entries(ingredientDeductions)) {
+          const sup = supplies.find((s) => s.id === supId);
+          if (sup) sup.stock = Math.max(0, Number((Number(sup.stock) - deductAmt).toFixed(2)));
+        }
+        if (customBottlesCount > 0) {
+          for (const sup of supplies) {
+            if (sup.category === 'Bottles & Labels') {
+              sup.stock = Math.max(0, Number(sup.stock) - customBottlesCount);
+            }
+          }
+        }
+        orders.unshift(newOrder);
+      }
+
+      trackedOrderIds.add(orderId);
+      saveLocalState();
+      bag = [];
+      event.target.reset();
+      toggleBagDrawer(false);
+      renderAll();
+      switchView('track');
+
+      if (stripeConfig.enabled && stripeConfig.paymentLink) {
+        showToast(`Order ${orderId} saved — opening Stripe payment...`);
+        window.open(stripeConfig.paymentLink, '_blank', 'noopener,noreferrer');
+      } else {
+        showToast(`Order ${orderId} confirmed! Track your live status below.`);
+      }
+    };
+
+    // =========================================================================
+    // 8. CUSTOMER ORDER TRACKING PORTAL
+    // =========================================================================
+    window.lookupCustomerOrder = function (event) {
+      event.preventDefault();
+      const rawQuery = (document.getElementById('track-lookup-input')?.value || '').trim().toLowerCase();
+      if (!rawQuery) return;
+
+      const normalizedPhone = rawQuery.replace(/\s+/g, '');
+      const matches = orders.filter((o) => {
+        const idMatch = o.id.toLowerCase() === rawQuery || o.id.toLowerCase().includes(rawQuery);
+        const phoneMatch = (o.phone || '').replace(/\s+/g, '').includes(normalizedPhone) && normalizedPhone.length >= 5;
+        return idMatch || phoneMatch;
+      });
+
+      if (matches.length === 0) {
+        showToast('No order found matching that reference or mobile number');
+        return;
+      }
+
+      matches.forEach((m) => trackedOrderIds.add(m.id));
+      saveLocalState();
+      renderCustomerTracking();
+      showToast(`Found ${matches.length} order${matches.length > 1 ? 's' : ''}`);
+    };
+
+    window.copyOrderRef = function (orderId) {
+      const temp = document.createElement('textarea');
+      temp.value = orderId;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`Copied order reference ${orderId}`);
+    };
+
+    function renderCustomerTracking() {
+      const container = document.getElementById('customer-tracked-orders');
+      if (!container) return;
+
+      const trackedList = orders.filter((o) => trackedOrderIds.has(o.id));
+
+      if (trackedList.length === 0) {
+        container.innerHTML = `
+          <div class="border border-zinc-200 rounded-3xl p-8 sm:p-10 bg-white text-center">
+            <p class="font-serif text-2xl font-semibold text-obsidian mb-2">No active orders tracked yet</p>
+            <p class="text-xs sm:text-sm text-zinc-500 max-w-md mx-auto mb-5">
+              Place an order from our cold-pressed menu to track it here automatically, or enter your Order Reference above.
+            </p>
+            <button onclick="switchView('menu')" class="px-6 py-2.5 rounded-full bg-obsidian text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800 transition-colors">
+              Explore Menu
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const steps = ['New', 'Preparing', 'Out for Delivery', 'Delivered'];
+      const stepLabels = ['Order Received', 'Cold-Pressing', 'Chilled Courier', 'Delivered'];
+
+      container.innerHTML = trackedList.map((order) => {
+        const currentIdx = Math.max(0, steps.indexOf(order.status));
+        const itemsHtml = (order.items || [])
+          .map((i) => `
+            <li class="text-xs text-zinc-700">
+              <div class="flex justify-between">
+                <span>${i.qty}&times; ${escapeHtml(i.name)}</span>
+                <span class="font-medium tabular-nums">&pound;${(i.qty * i.price).toFixed(2)}</span>
+              </div>
+              ${i.ingredients ? `<p class="text-[11px] text-zinc-500 pl-4 mt-0.5">${escapeHtml(i.ingredients)}</p>` : ''}
+            </li>
+          `)
+          .join('');
+
+        return `
+          <div class="border border-zinc-200 rounded-3xl p-6 sm:p-7 bg-white shadow-xs space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-100 pb-4">
+              <div>
+                <div class="flex items-center gap-2.5">
+                  <span class="font-mono text-sm font-bold text-obsidian">${escapeHtml(order.id)}</span>
+                  <button onclick="copyOrderRef('${escapeHtml(order.id)}')" class="text-[11px] px-2.5 py-0.5 rounded-full border border-zinc-200 hover:border-obsidian text-zinc-600 hover:text-obsidian transition-colors">Copy Ref</button>
+                </div>
+                <p class="text-xs text-zinc-500 mt-1">Placed ${formatRelativeTime(order.createdAt)} &bull; ${escapeHtml(order.window)}</p>
+              </div>
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold ${
+                order.status === 'Delivered'
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                  : 'bg-obsidian text-white'
+              }">
+                ${escapeHtml(order.status)}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 pt-1">
+              ${steps.map((step, idx) => {
+                const done = idx <= currentIdx;
+                return `
+                  <div>
+                    <div class="h-1.5 rounded-full mb-2 transition-all ${done ? 'bg-obsidian' : 'bg-zinc-200'}"></div>
+                    <p class="text-[11px] leading-tight ${done ? 'font-semibold text-obsidian' : 'text-zinc-400'}">${stepLabels[idx]}</p>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-zinc-100">
+              <div>
+                <p class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold mb-1.5">Your Blends</p>
+                <ul class="space-y-1.5">${itemsHtml}</ul>
+                <div class="flex justify-between text-xs font-bold text-obsidian pt-2 mt-2 border-t border-zinc-100">
+                  <span>Total</span>
+                  <span class="tabular-nums">&pound;${Number(order.total).toFixed(2)}</span>
+                </div>
+              </div>
+              <div class="bg-zinc-50 rounded-2xl p-3.5 border border-zinc-100">
+                <p class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold mb-1">Delivery Destination</p>
+                <p class="text-xs font-semibold text-obsidian">${escapeHtml(order.customerName)}</p>
+                <p class="text-xs text-zinc-600 mt-0.5">${escapeHtml(order.address)}, ${escapeHtml(order.postcode)}</p>
+                ${order.notes ? `<p class="text-[11px] text-zinc-500 italic mt-1.5">Note: ${escapeHtml(order.notes)}</p>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 9. STAFF ONLY — ORDERS & DELIVERY DISPATCH MANAGEMENT
+    // =========================================================================
+    window.setOrderFilter = function (filter) {
+      selectedOrderFilter = filter;
+      document.querySelectorAll('.order-filter-btn').forEach((btn) => {
+        const match = btn.getAttribute('data-order-filter') === filter;
+        btn.className = match
+          ? 'order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-obsidian text-white transition-all'
+          : 'order-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-obsidian transition-all';
+      });
+      renderOrders();
+    };
+
+    window.advanceOrderStatus = async function (orderId) {
+      const flow = ['New', 'Preparing', 'Out for Delivery', 'Delivered'];
+      const order = orders.find((o) => o.id === orderId);
+      if (!order) return;
+
+      const idx = flow.indexOf(order.status);
+      if (idx === -1 || idx >= flow.length - 1) return;
+
+      const nextStatus = flow[idx + 1];
+      order.status = nextStatus;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId), { status: nextStatus });
+        } catch (err) {
+          console.warn('Order status sync error:', err.message);
+        }
+      }
+
+      renderOrders();
+      renderCustomerTracking();
+      updateBadges();
+      showToast(`${orderId} updated to "${nextStatus}"`);
+    };
+
+    window.copyCourierDetails = function (orderId) {
+      const order = orders.find((o) => o.id === orderId);
+      if (!order) return;
+      const itemsSummary = order.items
+        .map((i) => `${i.qty}x ${i.name}${i.ingredients ? ` [${i.ingredients}]` : ''}`)
+        .join(', ');
+      const summary = `elevét Delivery ${order.id} | ${order.customerName} (${order.phone}) | ${order.address}, ${order.postcode} | Window: ${order.window} | Items: ${itemsSummary}`;
+      const temp = document.createElement('textarea');
+      temp.value = summary;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`Copied courier manifest for ${orderId}`);
+    };
+
+    function renderOrders() {
+      const listEl = document.getElementById('orders-list');
+      if (!listEl) return;
+
+      const activeCount = orders.filter((o) => o.status !== 'Delivered').length;
+      const enRouteCount = orders.filter((o) => o.status === 'Out for Delivery').length;
+      const deliveredCount = orders.filter((o) => o.status === 'Delivered').length;
+      const revenue = orders.reduce((sum, o) => sum + Number(o.total || 0), 0);
+
+      document.getElementById('kpi-active-orders').textContent = activeCount;
+      document.getElementById('kpi-enroute-orders').textContent = enRouteCount;
+      document.getElementById('kpi-delivered-orders').textContent = deliveredCount;
+      document.getElementById('kpi-revenue').textContent = `£${revenue.toFixed(2)}`;
+
+      const filtered = selectedOrderFilter === 'All'
+        ? orders
+        : orders.filter((o) => o.status === selectedOrderFilter);
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="border border-dashed border-zinc-200 rounded-3xl p-10 text-center bg-white">
+            <p class="font-serif text-2xl text-obsidian mb-1">No orders in "${escapeHtml(selectedOrderFilter)}"</p>
+            <p class="text-xs text-zinc-500">Incoming customer orders appear here automatically.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const nextButtonLabel = {
+        'New': 'Start Pressing',
+        'Preparing': 'Dispatch Courier',
+        'Out for Delivery': 'Mark Delivered'
+      };
+
+      listEl.innerHTML = filtered.map((order) => {
+        const isDelivered = order.status === 'Delivered';
+        const paymentBadge = order.paymentStatus || 'Pending Payment';
+        const itemsText = (order.items || [])
+          .map((i) => `
+            <span class="inline-flex flex-col px-3 py-1.5 rounded-2xl bg-zinc-100 text-xs font-medium text-obsidian">
+              <span>${i.qty}&times; ${escapeHtml(i.name)}</span>
+              ${i.ingredients ? `<span class="text-[11px] font-normal text-zinc-600 mt-0.5">Recipe: ${escapeHtml(i.ingredients)}</span>` : ''}
+            </span>
+          `)
+          .join(' ');
+
+        return `
+          <article class="border border-zinc-200 rounded-3xl p-5 sm:p-6 bg-white flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div class="space-y-3 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-obsidian text-white">${escapeHtml(order.id)}</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold border ${
+                  isDelivered ? 'bg-emerald-50 text-emerald-800 border-emerald-200' : 'bg-zinc-50 text-obsidian border-zinc-300'
+                }">${escapeHtml(order.status)}</span>
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium border ${
+                  paymentBadge.startsWith('Paid')
+                    ? 'bg-emerald-50/70 text-emerald-800 border-emerald-200'
+                    : 'bg-zinc-50 text-zinc-600 border-zinc-200'
+                }">${escapeHtml(paymentBadge)}</span>
+                <span class="text-xs text-zinc-400">&bull; ${formatRelativeTime(order.createdAt)}</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div>
+                  <p class="font-semibold text-obsidian text-sm">${escapeHtml(order.customerName)} <span class="font-normal text-zinc-500">(${escapeHtml(order.phone)})</span></p>
+                  <p class="text-zinc-600 mt-0.5">${escapeHtml(order.address)}, <span class="font-semibold text-obsidian">${escapeHtml(order.postcode)}</span></p>
+                  ${order.notes ? `<p class="text-zinc-500 italic mt-1">Courier note: "${escapeHtml(order.notes)}"</p>` : ''}
+                </div>
+                <div>
+                  <p class="text-zinc-500">Delivery Window: <span class="font-semibold text-obsidian">${escapeHtml(order.window)}</span></p>
+                  <p class="text-zinc-500 mt-0.5">Order Total: <span class="font-serif text-lg font-semibold text-obsidian tabular-nums">&pound;${Number(order.total).toFixed(2)}</span></p>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 pt-1">
+                ${itemsText}
+              </div>
+            </div>
+
+            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-zinc-100 shrink-0">
+              <button onclick="openEditOrderModal('${escapeHtml(order.id)}')" class="px-3.5 py-2 rounded-full border border-zinc-300 hover:border-obsidian text-xs font-semibold text-obsidian transition-colors">
+                Edit
+              </button>
+              <button onclick="copyCourierDetails('${escapeHtml(order.id)}')" class="px-3.5 py-2 rounded-full border border-zinc-300 hover:border-obsidian text-xs font-semibold text-obsidian transition-colors">
+                Copy Info
+              </button>
+              ${
+                !isDelivered
+                  ? `<button onclick="advanceOrderStatus('${escapeHtml(order.id)}')" class="px-4 py-2 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors">
+                      ${nextButtonLabel[order.status] || 'Advance'} &rarr;
+                    </button>`
+                  : `<span class="px-3.5 py-2 rounded-full bg-zinc-100 text-zinc-500 text-xs font-semibold">Completed</span>`
+              }
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    window.openEditOrderModal = function (orderId) {
+      const order = orders.find((o) => o.id === orderId);
+      if (!order) return;
+      document.getElementById('edit-order-id').value = order.id;
+      document.getElementById('edit-order-modal-title').textContent = `Edit ${order.id}`;
+      document.getElementById('edit-order-name').value = order.customerName || '';
+      document.getElementById('edit-order-phone').value = order.phone || '';
+      document.getElementById('edit-order-address').value = order.address || '';
+      document.getElementById('edit-order-postcode').value = order.postcode || '';
+      document.getElementById('edit-order-window').value = order.window || 'Midday Chilled (12:00 – 15:00)';
+      document.getElementById('edit-order-status').value = order.status || 'New';
+      document.getElementById('edit-order-payment').value = order.paymentStatus || 'Pending Payment';
+      document.getElementById('edit-order-notes').value = order.notes || '';
+      document.getElementById('edit-order-modal').classList.remove('hidden');
+    };
+
+    window.closeEditOrderModal = function () {
+      document.getElementById('edit-order-modal').classList.add('hidden');
+    };
+
+    window.handleSaveEditedOrder = async function (event) {
+      event.preventDefault();
+      const orderId = document.getElementById('edit-order-id').value;
+      const order = orders.find((o) => o.id === orderId);
+      if (!order) return;
+
+      const updatedFields = {
+        customerName: document.getElementById('edit-order-name').value.trim(),
+        phone: document.getElementById('edit-order-phone').value.trim(),
+        address: document.getElementById('edit-order-address').value.trim(),
+        postcode: document.getElementById('edit-order-postcode').value.trim().toUpperCase(),
+        window: document.getElementById('edit-order-window').value,
+        status: document.getElementById('edit-order-status').value,
+        paymentStatus: document.getElementById('edit-order-payment').value,
+        notes: document.getElementById('edit-order-notes').value.trim()
+      };
+
+      Object.assign(order, updatedFields);
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId), updatedFields);
+        } catch (err) {
+          console.warn('Order edit sync error:', err.message);
+        }
+      }
+
+      closeEditOrderModal();
+      renderAll();
+      showToast(`Updated details for ${orderId}`);
+    };
+
+    window.deleteOrderFromModal = function () {
+      const orderId = document.getElementById('edit-order-id').value;
+      if (!orderId) return;
+      closeEditOrderModal();
+      requestConfirm(
+        `Delete Order ${orderId}?`,
+        'This will permanently remove the order record from your dispatch queue.',
+        async () => {
+          orders = orders.filter((o) => o.id !== orderId);
+          saveLocalState();
+          if (cloudEnabled && db && fsOps && currentUser) {
+            try {
+              await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', orderId));
+            } catch (err) {
+              console.warn('Order delete sync error:', err.message);
+            }
+          }
+          renderAll();
+          showToast(`Deleted order ${orderId}`);
+        }
+      );
+    };
+
+    // =========================================================================
+    // 10. STAFF ONLY — STOCK & INVENTORY CONTROL (JUICES + SUPPLIES)
+    // =========================================================================
+    window.setInventoryTab = function (tab) {
+      selectedInventoryTab = tab;
+      document.querySelectorAll('.inv-tab-btn').forEach((btn) => {
+        const isMatch = btn.getAttribute('data-inv-tab') === tab;
+        btn.className = isMatch
+          ? 'inv-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-obsidian text-white transition-all whitespace-nowrap'
+          : 'inv-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian hover:text-obsidian transition-all whitespace-nowrap';
+      });
+
+      const suppliesCard = document.getElementById('supplies-inventory-card');
+      const juicesCard = document.getElementById('juices-inventory-card');
+      if (suppliesCard) suppliesCard.classList.toggle('hidden', tab === 'juices');
+      if (juicesCard) juicesCard.classList.toggle('hidden', tab === 'supplies');
+    };
+
+    window.setSupplyFilter = function (filter) {
+      selectedSupplyFilter = filter;
+      document.querySelectorAll('.supply-filter-btn').forEach((btn) => {
+        const isMatch = btn.getAttribute('data-supply-filter') === filter;
+        btn.className = isMatch
+          ? 'supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-obsidian text-white transition-all whitespace-nowrap'
+          : 'supply-filter-btn px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white border border-zinc-200 text-zinc-600 hover:border-obsidian transition-all whitespace-nowrap';
+      });
+      renderSuppliesInventory();
+    };
+
+    window.adjustStock = async function (itemId, delta) {
+      const item = menuItems.find((m) => m.id === itemId);
+      if (!item) return;
+
+      const updatedStock = Math.max(0, Number(item.stock) + delta);
+      item.stock = updatedStock;
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', itemId), { stock: updatedStock });
+        } catch (err) {
+          console.warn('Stock adjust sync error:', err.message);
+        }
+      }
+
+      if (delta >= 10) {
+        let deductedPackaging = false;
+        let packagingLowNotice = false;
+        for (const sup of supplies) {
+          if (sup.category === 'Bottles & Labels') {
+            sup.stock = Math.max(0, Number(sup.stock) - delta);
+            deductedPackaging = true;
+            if (sup.stock <= sup.minStock) packagingLowNotice = true;
+            if (cloudEnabled && db && fsOps && currentUser) {
+              try {
+                await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', sup.id), { stock: sup.stock });
+              } catch (err) {
+                console.warn('Packaging deduction sync error:', err.message);
+              }
+            }
+          }
+        }
+        showToast(
+          packagingLowNotice
+            ? `+${delta} ${item.name} pressed • Warning: Packaging stock running low!`
+            : deductedPackaging
+              ? `Pressed +${delta} ${item.name} (deducted ${delta} packaging units)`
+              : `Pressed +${delta} ${item.name}`
+        );
+      }
+
+      saveLocalState();
+      sanitizeBagAgainstStock();
+      renderAll();
+    };
+
+    window.setDirectJuiceStock = async function (itemId, rawValue) {
+      const item = menuItems.find((m) => m.id === itemId);
+      if (!item) return;
+      const parsed = Math.max(0, parseInt(rawValue, 10) || 0);
+      if (parsed === Number(item.stock)) return;
+      item.stock = parsed;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', itemId), { stock: parsed });
+        } catch (err) {
+          console.warn('Direct juice stock sync error:', err.message);
+        }
+      }
+
+      sanitizeBagAgainstStock();
+      renderAll();
+      showToast(`Updated ${item.name} stock to ${parsed}`);
+    };
+
+    window.adjustSupplyStock = async function (supplyId, delta) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup) return;
+
+      const nextVal = Math.max(0, Number((Number(sup.stock) + delta).toFixed(2)));
+      sup.stock = nextVal;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supplyId), { stock: nextVal });
+        } catch (err) {
+          console.warn('Supply adjust sync error:', err.message);
+        }
+      }
+
+      sanitizeBagAgainstStock();
+      renderInventory();
+      updateBadges();
+    };
+
+    window.setDirectSupplyStock = async function (supplyId, rawValue) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup) return;
+      const parsed = Math.max(0, Number((parseFloat(rawValue) || 0).toFixed(2)));
+      if (parsed === Number(sup.stock)) return;
+      sup.stock = parsed;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supplyId), { stock: parsed });
+        } catch (err) {
+          console.warn('Direct supply stock sync error:', err.message);
+        }
+      }
+
+      sanitizeBagAgainstStock();
+      renderInventory();
+      updateBadges();
+      showToast(`Updated ${sup.name} to ${parsed} ${sup.unit}`);
+    };
+
+    window.restockSupplyBatch = async function (supplyId) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup) return;
+
+      const batchAmt = Number(sup.restockBatch || 10);
+      const nextVal = Number((Number(sup.stock) + batchAmt).toFixed(2));
+      sup.stock = nextVal;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.updateDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supplyId), { stock: nextVal });
+        } catch (err) {
+          console.warn('Supply batch restock sync error:', err.message);
+        }
+      }
+
+      renderInventory();
+      updateBadges();
+      showToast(`Restocked +${batchAmt} ${sup.unit} of ${sup.name}`);
+    };
+
+    window.toggleNewSupplyModal = function (show) {
+      const modal = document.getElementById('new-supply-modal');
+      if (!modal) return;
+      if (show) {
+        document.getElementById('edit-supply-id').value = '';
+        document.getElementById('supply-modal-eyebrow').textContent = 'Cold Store & Packaging Ledger';
+        document.getElementById('supply-modal-title').textContent = 'Add Ingredient or Supply';
+        document.getElementById('supply-modal-submit-btn').textContent = 'Add to Stock Ledger';
+        document.getElementById('new-supply-name').value = '';
+        document.getElementById('new-supply-category').value = 'Fruits & Produce';
+        document.getElementById('new-supply-unit').value = 'kg';
+        document.getElementById('new-supply-stock').value = '';
+        document.getElementById('new-supply-min').value = '';
+        document.getElementById('new-supply-batch').value = '';
+        document.getElementById('new-supply-note').value = '';
+      }
+      modal.classList.toggle('hidden', !show);
+    };
+
+    window.openEditSupplyModal = function (supplyId) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup) return;
+      document.getElementById('edit-supply-id').value = sup.id;
+      document.getElementById('supply-modal-eyebrow').textContent = 'Edit Inventory Item';
+      document.getElementById('supply-modal-title').textContent = `Edit ${sup.name}`;
+      document.getElementById('supply-modal-submit-btn').textContent = 'Save Changes';
+      document.getElementById('new-supply-name').value = sup.name || '';
+      document.getElementById('new-supply-category').value = sup.category || 'Fruits & Produce';
+      document.getElementById('new-supply-unit').value = sup.unit || 'kg';
+      document.getElementById('new-supply-stock').value = sup.stock ?? 0;
+      document.getElementById('new-supply-min').value = sup.minStock ?? 5;
+      document.getElementById('new-supply-batch').value = sup.restockBatch ?? 10;
+      document.getElementById('new-supply-note').value = sup.note || '';
+      document.getElementById('new-supply-modal').classList.remove('hidden');
+    };
+
+    window.handleSaveSupply = async function (event) {
+      event.preventDefault();
+      const editId = document.getElementById('edit-supply-id').value.trim();
+      const name = document.getElementById('new-supply-name').value.trim();
+      const category = document.getElementById('new-supply-category').value;
+      const unit = document.getElementById('new-supply-unit').value;
+      const stock = parseFloat(document.getElementById('new-supply-stock').value) || 0;
+      const minStock = parseFloat(document.getElementById('new-supply-min').value) || 5;
+      const restockBatch = parseFloat(document.getElementById('new-supply-batch').value) || 10;
+      const note = document.getElementById('new-supply-note').value.trim();
+
+      const catColors = {
+        'Fruits & Produce': '#10B981',
+        'Roots & Botanicals': '#D97706',
+        'Bottles & Labels': '#18181B'
+      };
+
+      const supplyObj = {
+        id: editId || `SUP-${Date.now().toString().slice(-6)}`,
+        name,
+        category,
+        unit,
+        stock,
+        minStock,
+        restockBatch,
+        color: catColors[category] || '#18181B',
+        note: note || category
+      };
+
+      if (editId) {
+        const idx = supplies.findIndex((s) => s.id === editId);
+        if (idx !== -1) supplies[idx] = supplyObj;
+      } else {
+        supplies.push(supplyObj);
+      }
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supplyObj.id), supplyObj);
+        } catch (err) {
+          console.warn('Supply save sync error:', err.message);
+        }
+      }
+
+      sanitizeBagAgainstStock();
+      toggleNewSupplyModal(false);
+      renderInventory();
+      updateBadges();
+      showToast(editId ? `Updated ${supplyObj.name}` : `${supplyObj.name} added to stock ledger`);
+    };
+
+    window.deleteSupply = function (supplyId) {
+      const sup = supplies.find((s) => s.id === supplyId);
+      if (!sup) return;
+      requestConfirm(
+        `Remove ${sup.name}?`,
+        'This item will be removed from your ingredients & packaging stock ledger.',
+        async () => {
+          supplies = supplies.filter((s) => s.id !== supplyId);
+          saveLocalState();
+          if (cloudEnabled && db && fsOps && currentUser) {
+            try {
+              await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', supplyId));
+            } catch (err) {
+              console.warn('Supply delete sync error:', err.message);
+            }
+          }
+          sanitizeBagAgainstStock();
+          renderInventory();
+          updateBadges();
+          showToast(`Removed ${sup.name}`);
+        }
+      );
+    };
+
+    window.toggleNewJuiceModal = function (show) {
+      const modal = document.getElementById('new-juice-modal');
+      if (!modal) return;
+      if (show) {
+        const nextNum = String(menuItems.length + 1).padStart(2, '0');
+        document.getElementById('edit-juice-id').value = '';
+        document.getElementById('juice-modal-eyebrow').textContent = 'Pressing Room Release';
+        document.getElementById('juice-modal-title').textContent = 'Add Cold-Pressed Blend';
+        document.getElementById('juice-modal-submit-btn').textContent = 'Publish to Menu';
+        document.getElementById('new-juice-name').value = '';
+        document.getElementById('new-juice-number').value = nextNum;
+        document.getElementById('new-juice-category').value = 'Detox';
+        document.getElementById('new-juice-tint').value = '#F59E0B';
+        document.getElementById('new-juice-ingredients').value = '';
+        document.getElementById('new-juice-notes').value = '';
+        document.getElementById('new-juice-price').value = '';
+        document.getElementById('new-juice-stock').value = '';
+      }
+      modal.classList.toggle('hidden', !show);
+    };
+
+    window.openEditJuiceModal = function (juiceId) {
+      const item = menuItems.find((m) => m.id === juiceId);
+      if (!item) return;
+      document.getElementById('edit-juice-id').value = item.id;
+      document.getElementById('juice-modal-eyebrow').textContent = 'Edit Menu & Cellar Blend';
+      document.getElementById('juice-modal-title').textContent = `Edit ${item.name}`;
+      document.getElementById('juice-modal-submit-btn').textContent = 'Save Blend Changes';
+      document.getElementById('new-juice-name').value = item.name || '';
+      document.getElementById('new-juice-number').value = item.number || '01';
+      document.getElementById('new-juice-category').value = item.category || 'Detox';
+      document.getElementById('new-juice-tint').value = item.juiceColor || '#F59E0B';
+      document.getElementById('new-juice-ingredients').value = item.ingredients || '';
+      document.getElementById('new-juice-notes').value = item.notes || '';
+      document.getElementById('new-juice-price').value = item.price ?? 6.50;
+      document.getElementById('new-juice-stock').value = item.stock ?? 0;
+      document.getElementById('new-juice-modal').classList.remove('hidden');
+    };
+
+    window.handleSaveJuice = async function (event) {
+      event.preventDefault();
+      const editId = document.getElementById('edit-juice-id').value.trim();
+      const name = document.getElementById('new-juice-name').value.trim();
+      const number = document.getElementById('new-juice-number').value.trim() || String(menuItems.length + 1).padStart(2, '0');
+      const category = document.getElementById('new-juice-category').value;
+      const ingredients = document.getElementById('new-juice-ingredients').value.trim();
+      const notes = document.getElementById('new-juice-notes').value.trim();
+      const price = parseFloat(document.getElementById('new-juice-price').value) || 6.50;
+      const stock = parseInt(document.getElementById('new-juice-stock').value, 10) || 0;
+      const juiceColor = document.getElementById('new-juice-tint').value;
+
+      const juiceObj = {
+        id: editId || `ELV-${number}-${Date.now().toString().slice(-4)}`,
+        number,
+        name,
+        category,
+        price,
+        stock,
+        juiceColor,
+        ingredients,
+        notes: notes || 'Small-batch cold pressing.'
+      };
+
+      if (editId) {
+        const idx = menuItems.findIndex((m) => m.id === editId);
+        if (idx !== -1) menuItems[idx] = juiceObj;
+      } else {
+        menuItems.push(juiceObj);
+      }
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', juiceObj.id), juiceObj);
+        } catch (err) {
+          console.warn('Juice save sync error:', err.message);
+        }
+      }
+
+      sanitizeBagAgainstStock();
+      toggleNewJuiceModal(false);
+      renderAll();
+      showToast(editId ? `Updated ${juiceObj.name}` : `${juiceObj.name} published to menu`);
+    };
+
+    window.deleteJuice = function (juiceId) {
+      const item = menuItems.find((m) => m.id === juiceId);
+      if (!item) return;
+      requestConfirm(
+        `Remove ${item.name} from Menu?`,
+        'This blend will be removed from the live customer storefront and cellar inventory.',
+        async () => {
+          menuItems = menuItems.filter((m) => m.id !== juiceId);
+          bag = bag.filter((b) => b.id !== juiceId);
+          saveLocalState();
+          if (cloudEnabled && db && fsOps && currentUser) {
+            try {
+              await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', juiceId));
+            } catch (err) {
+              console.warn('Juice delete sync error:', err.message);
+            }
+          }
+          renderAll();
+          showToast(`Removed ${item.name}`);
+        }
+      );
+    };
+
+    function renderSuppliesInventory() {
+      const container = document.getElementById('supplies-list-body');
+      if (!container) return;
+
+      let filtered = supplies;
+      if (selectedSupplyFilter === 'Low Stock') {
+        filtered = supplies.filter((s) => Number(s.stock) <= Number(s.minStock));
+      } else if (selectedSupplyFilter !== 'All') {
+        filtered = supplies.filter((s) => s.category === selectedSupplyFilter);
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="py-8 px-5 text-center text-xs text-zinc-500">
+            ${supplies.length === 0
+              ? 'No fruits, ingredients, bottles, or labels added yet. Tap "+ Add Ingredient / Supply" above to start tracking.'
+              : 'No ingredients or packaging supplies match this filter.'}
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((sup) => {
+        const stockNum = Number(sup.stock || 0);
+        const minNum = Number(sup.minStock || 1);
+        const isOut = stockNum <= 0;
+        const isLow = stockNum > 0 && stockNum <= minNum;
+        const step = sup.unit === 'kg' || sup.unit === 'litres' ? 0.5 : 1;
+        const pct = Math.min(100, Math.round((stockNum / Math.max(minNum * 2, 1)) * 100));
+
+        const statusHtml = isOut
+          ? `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">Depleted</span>`
+          : isLow
+            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Low Stock</span>`
+            : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-50 text-zinc-700 border border-zinc-200"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Optimal</span>`;
+
+        const barColor = isOut ? 'bg-red-500' : isLow ? 'bg-amber-500' : 'bg-obsidian';
+
+        return `
+          <div class="p-4 sm:p-5 hover:bg-zinc-50/70 transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4 ${isOut || isLow ? 'bg-amber-50/20' : ''}">
+            <div class="flex items-start justify-between gap-3 flex-1">
+              <div class="flex items-center gap-3">
+                <span class="w-2.5 h-9 rounded-full shrink-0" style="background-color: ${sup.color || '#18181B'};"></span>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <p class="font-semibold text-obsidian text-sm sm:text-base leading-tight">${escapeHtml(sup.name)}</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 font-medium">${escapeHtml(sup.category)}</span>
+                  </div>
+                  <div class="flex items-center gap-3 mt-1.5">
+                    <span class="text-[11px] text-zinc-500 tabular-nums">Low warning below ${minNum} ${escapeHtml(sup.unit)}</span>
+                    <div class="w-20 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                      <div class="h-full ${barColor} rounded-full transition-all" style="width: ${pct}%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="shrink-0">${statusHtml}</div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between lg:justify-end gap-2.5 pt-3 lg:pt-0 border-t lg:border-t-0 border-zinc-100">
+              <div class="flex items-center gap-1.5 bg-zinc-100/80 border border-zinc-200 rounded-full p-1">
+                <button onclick="adjustSupplyStock('${sup.id}', -${step})" ${isOut ? 'disabled' : ''} class="w-8 h-8 rounded-full bg-white border border-zinc-200 hover:border-obsidian disabled:opacity-40 flex items-center justify-center text-sm font-bold">&minus;</button>
+                <div class="flex items-center gap-1 px-1.5">
+                  <input
+                    type="number"
+                    step="${step}"
+                    min="0"
+                    value="${stockNum}"
+                    onchange="setDirectSupplyStock('${sup.id}', this.value)"
+                    aria-label="Stock quantity for ${escapeHtml(sup.name)}"
+                    class="w-14 text-center font-bold text-obsidian tabular-nums text-xs bg-white border border-zinc-200 focus:border-obsidian focus:outline-none rounded-lg py-1"
+                  />
+                  <span class="text-[11px] font-medium text-zinc-500">${escapeHtml(sup.unit)}</span>
+                </div>
+                <button onclick="adjustSupplyStock('${sup.id}', ${step})" class="w-8 h-8 rounded-full bg-white border border-zinc-200 hover:border-obsidian flex items-center justify-center text-sm font-bold">+</button>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <button onclick="restockSupplyBatch('${sup.id}')" class="px-3 py-2 rounded-full border border-zinc-300 hover:border-obsidian hover:bg-obsidian hover:text-white text-obsidian text-xs font-semibold transition-colors whitespace-nowrap">
+                  +${sup.restockBatch} ${escapeHtml(sup.unit)}
+                </button>
+                <button onclick="openEditSupplyModal('${sup.id}')" class="px-3.5 py-2 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold transition-colors">
+                  Edit
+                </button>
+                <button onclick="deleteSupply('${sup.id}')" title="Delete item" class="p-2 rounded-full border border-zinc-200 hover:border-red-300 hover:bg-red-50 text-zinc-400 hover:text-red-600 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderInventory() {
+      const container = document.getElementById('juices-list-body');
+      if (!container) return;
+
+      const totalBottles = menuItems.reduce((sum, i) => sum + Number(i.stock || 0), 0);
+      const lowJuiceItems = menuItems.filter((i) => Number(i.stock) <= 5);
+      const lowSupplyItems = supplies.filter((s) => Number(s.stock) <= Number(s.minStock));
+      const totalLowSkus = lowJuiceItems.length + lowSupplyItems.length;
+      const stockValue = menuItems.reduce((sum, i) => sum + Number(i.stock || 0) * Number(i.price || 0), 0);
+
+      document.getElementById('kpi-total-bottles').textContent = totalBottles;
+      document.getElementById('kpi-low-skus').textContent = totalLowSkus;
+      document.getElementById('kpi-supply-items').textContent = supplies.length;
+      document.getElementById('kpi-stock-value').textContent = `£${stockValue.toFixed(2)}`;
+
+      const alertBanner = document.getElementById('low-stock-alert-banner');
+      const alertSummary = document.getElementById('low-stock-alert-summary');
+      if (alertBanner && alertSummary) {
+        if (totalLowSkus > 0) {
+          const flaggedNames = [
+            ...lowSupplyItems.map((s) => `${s.name} (${s.stock} ${s.unit})`),
+            ...lowJuiceItems.map((j) => `${j.name} (${j.stock} bottles)`)
+          ];
+          alertSummary.textContent = `Running low on: ${flaggedNames.join(' • ')}`;
+          alertBanner.classList.remove('hidden');
+        } else {
+          alertBanner.classList.add('hidden');
+        }
+      }
+
+      renderSuppliesInventory();
+
+      if (menuItems.length === 0) {
+        container.innerHTML = `
+          <div class="py-10 px-5 text-center">
+            <p class="font-serif text-xl font-semibold text-obsidian mb-1">No juice blends created yet</p>
+            <p class="text-xs text-zinc-500 mb-4">Create your first cold-pressed juice blend to publish it to the customer menu and track bottle stock.</p>
+            <button onclick="toggleNewJuiceModal(true)" class="px-5 py-2.5 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider transition-colors">
+              + Add New Blend
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = menuItems.map((item) => {
+        const isOut = Number(item.stock) <= 0;
+        const isLow = Number(item.stock) > 0 && Number(item.stock) <= 5;
+        const statusHtml = isOut
+          ? `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-500">Out of Stock</span>`
+          : isLow
+            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>Low Stock</span>`
+            : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-zinc-50 text-zinc-700 border border-zinc-200"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>In Cellar</span>`;
+
+        return `
+          <div class="p-4 sm:p-5 hover:bg-zinc-50/70 transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="flex items-start justify-between gap-3 flex-1">
+              <div class="flex items-center gap-3.5">
+                <span class="w-3 h-10 rounded-full border border-zinc-200 shrink-0" style="background-color: ${item.juiceColor || '#F59E0B'};"></span>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <p class="font-serif text-xl font-semibold text-obsidian leading-tight">${escapeHtml(item.name)}</p>
+                    <span class="text-[11px] font-mono text-zinc-400">NO.${escapeHtml(item.number || '01')}</span>
+                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 font-medium">${escapeHtml(item.category)}</span>
+                  </div>
+                  <p class="text-xs font-semibold text-obsidian tabular-nums mt-1">&pound;${Number(item.price).toFixed(2)} <span class="font-normal text-zinc-400">&bull; ${escapeHtml(item.ingredients || '')}</span></p>
+                </div>
+              </div>
+              <div class="shrink-0">${statusHtml}</div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between lg:justify-end gap-2.5 pt-3 lg:pt-0 border-t lg:border-t-0 border-zinc-100">
+              <div class="flex items-center gap-1.5 bg-zinc-100/80 border border-zinc-200 rounded-full p-1">
+                <button onclick="adjustStock('${item.id}', -1)" ${isOut ? 'disabled' : ''} class="w-8 h-8 rounded-full bg-white border border-zinc-200 hover:border-obsidian disabled:opacity-40 flex items-center justify-center text-sm font-bold">&minus;</button>
+                <div class="flex items-center gap-1 px-1.5">
+                  <input
+                    type="number"
+                    min="0"
+                    value="${Number(item.stock || 0)}"
+                    onchange="setDirectJuiceStock('${item.id}', this.value)"
+                    aria-label="Bottle count for ${escapeHtml(item.name)}"
+                    class="w-12 text-center font-bold text-obsidian tabular-nums text-xs bg-white border border-zinc-200 focus:border-obsidian focus:outline-none rounded-lg py-1"
+                  />
+                  <span class="text-[11px] font-medium text-zinc-500">btl</span>
+                </div>
+                <button onclick="adjustStock('${item.id}', 1)" class="w-8 h-8 rounded-full bg-white border border-zinc-200 hover:border-obsidian flex items-center justify-center text-sm font-bold">+</button>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <button onclick="adjustStock('${item.id}', 10)" class="px-3 py-2 rounded-full border border-zinc-300 hover:border-obsidian text-obsidian text-xs font-semibold transition-colors whitespace-nowrap">
+                  +10 Batch
+                </button>
+                <button onclick="openEditJuiceModal('${item.id}')" class="px-3.5 py-2 rounded-full bg-obsidian text-white hover:bg-zinc-800 text-xs font-semibold transition-colors">
+                  Edit
+                </button>
+                <button onclick="deleteJuice('${item.id}')" title="Delete blend" class="p-2 rounded-full border border-zinc-200 hover:border-red-300 hover:bg-red-50 text-zinc-400 hover:text-red-600 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 11. OWNER SETTINGS (CUSTOM JUICE PRICE, PASSWORD, STRIPE & BACKUP)
+    // =========================================================================
+    window.openOwnerSettingsModal = function () {
+      const fb = document.getElementById('settings-password-feedback');
+      if (fb) fb.classList.add('hidden');
+      document.getElementById('settings-custom-juice-price').value = Number(customBlendBasePrice).toFixed(2);
+      document.getElementById('settings-current-password').value = '';
+      document.getElementById('settings-new-password').value = '';
+      document.getElementById('settings-confirm-password').value = '';
+      document.getElementById('settings-stripe-url').value = stripeConfig.paymentLink || '';
+      document.getElementById('settings-stripe-enabled').checked = Boolean(stripeConfig.enabled);
+      renderCloudBackupsList();
+      document.getElementById('owner-settings-modal').classList.remove('hidden');
+    };
+
+    window.closeOwnerSettingsModal = function () {
+      document.getElementById('owner-settings-modal').classList.add('hidden');
+    };
+
+    window.handleSaveCustomBlendPrice = async function (event) {
+      event.preventDefault();
+      const parsed = parseFloat(document.getElementById('settings-custom-juice-price').value);
+      if (isNaN(parsed) || parsed < 1) {
+        showToast('Please enter a valid price');
+        return;
+      }
+      customBlendBasePrice = Number(parsed.toFixed(2));
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(
+            fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'atelier'),
+            {
+              staffPassword: currentStaffPassword,
+              customBlendBasePrice,
+              stripeEnabled: stripeConfig.enabled,
+              stripePaymentLink: stripeConfig.paymentLink
+            },
+            { merge: true }
+          );
+        } catch (err) {
+          console.warn('Custom price sync error:', err.message);
+        }
+      }
+
+      showToast(`Bespoke custom blend price updated to £${customBlendBasePrice.toFixed(2)}`);
+    };
+
+    window.handleChangePassword = async function (event) {
+      event.preventDefault();
+      const currentInput = document.getElementById('settings-current-password').value.trim();
+      const newPass = document.getElementById('settings-new-password').value.trim();
+      const confirmPass = document.getElementById('settings-confirm-password').value.trim();
+      const fb = document.getElementById('settings-password-feedback');
+
+      if (currentInput !== currentStaffPassword) {
+        fb.textContent = 'Current password is incorrect.';
+        fb.className = 'text-xs font-medium text-red-600';
+        fb.classList.remove('hidden');
+        return;
+      }
+
+      if (newPass.length < 4) {
+        fb.textContent = 'New password must be at least 4 characters.';
+        fb.className = 'text-xs font-medium text-red-600';
+        fb.classList.remove('hidden');
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        fb.textContent = 'New passwords do not match.';
+        fb.className = 'text-xs font-medium text-red-600';
+        fb.classList.remove('hidden');
+        return;
+      }
+
+      currentStaffPassword = newPass;
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(
+            fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'atelier'),
+            {
+              staffPassword: currentStaffPassword,
+              customBlendBasePrice,
+              stripeEnabled: stripeConfig.enabled,
+              stripePaymentLink: stripeConfig.paymentLink
+            },
+            { merge: true }
+          );
+        } catch (err) {
+          console.warn('Password sync error:', err.message);
+        }
+      }
+
+      event.target.reset();
+      fb.textContent = 'Password updated and saved.';
+      fb.className = 'text-xs font-medium text-emerald-700';
+      fb.classList.remove('hidden');
+      showToast('Owner & Staff password updated');
+    };
+
+    window.handleSaveStripeConfig = async function (event) {
+      event.preventDefault();
+      const urlVal = document.getElementById('settings-stripe-url').value.trim();
+      const enabledVal = document.getElementById('settings-stripe-enabled').checked;
+
+      stripeConfig = {
+        enabled: enabledVal,
+        paymentLink: urlVal
+      };
+      saveLocalState();
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(
+            fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'atelier'),
+            {
+              staffPassword: currentStaffPassword,
+              customBlendBasePrice,
+              stripeEnabled: stripeConfig.enabled,
+              stripePaymentLink: stripeConfig.paymentLink
+            },
+            { merge: true }
+          );
+        } catch (err) {
+          console.warn('Stripe settings sync error:', err.message);
+        }
+      }
+
+      updateCheckoutPaymentLabel();
+      closeOwnerSettingsModal();
+      showToast('Stripe payment settings saved');
+    };
+
+    function buildBusinessBackupPayload() {
+      return {
+        brand: 'elevét',
+        version: '1.2',
+        exportedAt: new Date().toISOString(),
+        createdAt: Date.now(),
+        customBlendBasePrice,
+        menuItems: JSON.parse(JSON.stringify(menuItems)),
+        supplies: JSON.parse(JSON.stringify(supplies)),
+        orders: JSON.parse(JSON.stringify(orders)),
+        stripeConfig: { ...stripeConfig }
+      };
+    }
+
+    window.createCloudBackupSnapshot = async function () {
+      const backupId = `BKP-${Date.now()}`;
+      const snapshotObj = {
+        id: backupId,
+        label: new Date().toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }),
+        createdAt: Date.now(),
+        summary: `${menuItems.length} blends • ${supplies.length} supplies • ${orders.length} orders`,
+        payloadJson: JSON.stringify(buildBusinessBackupPayload())
+      };
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        try {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'backups', backupId), snapshotObj);
+          showToast('Cloud backup snapshot saved');
+        } catch (err) {
+          console.warn('Cloud backup save error:', err.message);
+          showToast('Could not save cloud snapshot — try Download File');
+        }
+      } else {
+        cloudBackups.unshift(snapshotObj);
+        saveLocalState();
+        renderCloudBackupsList();
+        showToast('Restore snapshot saved on this device');
+      }
+    };
+
+    function renderCloudBackupsList() {
+      const listEl = document.getElementById('cloud-backups-list');
+      if (!listEl) return;
+
+      if (cloudBackups.length === 0) {
+        listEl.innerHTML = `
+          <div class="rounded-2xl border border-dashed border-zinc-200 p-3 text-center text-[11px] text-zinc-400">
+            No snapshots saved yet. Click "Save Snapshot" to create a restore point or "Download File" to save externally.
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = cloudBackups.slice(0, 5).map((bkp) => `
+        <div class="flex items-center justify-between gap-2 rounded-2xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-xs">
+          <div>
+            <p class="font-semibold text-obsidian">${escapeHtml(bkp.label || bkp.id)}</p>
+            <p class="text-[11px] text-zinc-500">${escapeHtml(bkp.summary || '')}</p>
+          </div>
+          <button type="button" onclick="restoreCloudBackup('${escapeHtml(bkp.id)}')" class="px-3 py-1 rounded-full border border-zinc-300 hover:border-obsidian bg-white text-[11px] font-semibold text-obsidian transition-colors">
+            Restore
+          </button>
+        </div>
+      `).join('');
+    }
+
+    window.restoreCloudBackup = function (backupId) {
+      const bkp = cloudBackups.find((b) => b.id === backupId);
+      if (!bkp || !bkp.payloadJson) return;
+
+      requestConfirm(
+        'Restore Saved Snapshot?',
+        `This will replace your current menu, supplies, and orders with the backup from ${bkp.label}.`,
+        async () => {
+          try {
+            const parsed = JSON.parse(bkp.payloadJson);
+            await applyRestoredPayload(parsed);
+            closeOwnerSettingsModal();
+            showToast('Business data restored from snapshot');
+          } catch (err) {
+            showToast('Failed to parse backup snapshot');
+          }
+        }
+      );
+    };
+
+    window.exportBackupFile = function () {
+      const payload = buildBusinessBackupPayload();
+      const jsonStr = JSON.stringify(payload, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const dateTag = new Date().toISOString().slice(0, 10);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `elevet-backup-${dateTag}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Backup file downloaded — ready for Google Drive / iCloud');
+    };
+
+    window.triggerBackupFileImport = function () {
+      const input = document.getElementById('backup-file-input');
+      if (input) {
+        input.value = '';
+        input.click();
+      }
+    };
+
+    window.handleImportBackupFile = function (event) {
+      const file = event.target?.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (!Array.isArray(parsed.menuItems) || !Array.isArray(parsed.supplies) || !Array.isArray(parsed.orders)) {
+            showToast('Invalid elevét backup file format');
+            return;
+          }
+          requestConfirm(
+            'Restore From Backup File?',
+            `Restore ${parsed.menuItems.length} blends, ${parsed.supplies.length} supplies, and ${parsed.orders.length} orders from "${file.name}"?`,
+            async () => {
+              await applyRestoredPayload(parsed);
+              closeOwnerSettingsModal();
+              showToast('Business data restored and saved');
+            }
+          );
+        } catch (err) {
+          showToast('Could not read backup file');
+        }
+      };
+      reader.readAsText(file);
+    };
+
+    async function applyRestoredPayload(parsed) {
+      const nextMenu = Array.isArray(parsed.menuItems) ? parsed.menuItems : [];
+      const nextSupplies = Array.isArray(parsed.supplies) ? parsed.supplies : [];
+      const nextOrders = Array.isArray(parsed.orders) ? parsed.orders : [];
+      if (typeof parsed.customBlendBasePrice === 'number' && parsed.customBlendBasePrice > 0) {
+        customBlendBasePrice = parsed.customBlendBasePrice;
+      }
+
+      if (cloudEnabled && db && fsOps && currentUser) {
+        for (const existing of menuItems) {
+          if (!nextMenu.some((m) => m.id === existing.id)) {
+            await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', existing.id));
+          }
+        }
+        for (const item of nextMenu) {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'menu', item.id), item);
+        }
+
+        for (const existing of supplies) {
+          if (!nextSupplies.some((s) => s.id === existing.id)) {
+            await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', existing.id));
+          }
+        }
+        for (const sup of nextSupplies) {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'supplies', sup.id), sup);
+        }
+
+        for (const existing of orders) {
+          if (!nextOrders.some((o) => o.id === existing.id)) {
+            await fsOps.deleteDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', existing.id));
+          }
+        }
+        for (const ord of nextOrders) {
+          await fsOps.setDoc(fsOps.doc(db, 'artifacts', appId, 'public', 'data', 'orders', ord.id), ord);
+        }
+      }
+
+      menuItems = nextMenu;
+      supplies = nextSupplies;
+      orders = nextOrders;
+      saveLocalState();
+      sanitizeBagAgainstStock();
+      renderAll();
+    }
+
+    function requestConfirm(title, message, onConfirm) {
+      document.getElementById('confirm-modal-title').textContent = title;
+      document.getElementById('confirm-modal-message').textContent = message;
+      pendingConfirmCallback = onConfirm;
+      document.getElementById('confirm-action-modal').classList.remove('hidden');
+    }
+
+    window.closeConfirmModal = function () {
+      pendingConfirmCallback = null;
+      document.getElementById('confirm-action-modal').classList.add('hidden');
+    };
+
+    document.getElementById('confirm-modal-execute-btn')?.addEventListener('click', async () => {
+      const fn = pendingConfirmCallback;
+      closeConfirmModal();
+      if (typeof fn === 'function') await fn();
+    });
+
+    // =========================================================================
+    // 12. HELPERS, TOASTS & INITIAL RENDER
+    // =========================================================================
+    function showToast(message) {
+      const banner = document.getElementById('toast-banner');
+      const msgEl = document.getElementById('toast-message');
+      if (!banner || !msgEl) return;
+      msgEl.textContent = message;
+      banner.classList.remove('opacity-0', 'translate-y-2');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('opacity-0', 'translate-y-2');
+      }, 3200);
+    }
+
+    function updateBadges() {
+      const activeOrders = orders.filter((o) => o.status !== 'Delivered').length;
+      const lowJuiceCount = menuItems.filter((i) => i.stock <= 5).length;
+      const lowSupplyCount = supplies.filter((s) => Number(s.stock) <= Number(s.minStock)).length;
+      const totalLowCount = lowJuiceCount + lowSupplyCount;
+      const trackedCount = trackedOrderIds.size;
+
+      ['badge-active-orders-desktop', 'badge-active-orders-mobile'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = activeOrders;
+      });
+
+      ['badge-low-stock-desktop', 'badge-low-stock-mobile'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = totalLowCount;
+      });
+
+      ['badge-tracked-desktop', 'badge-tracked-mobile'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.textContent = trackedCount;
+          el.classList.toggle('hidden', trackedCount === 0);
+        }
+      });
+    }
+
+    function formatRelativeTime(timestamp) {
+      if (!timestamp) return 'Just now';
+      const mins = Math.max(1, Math.floor((Date.now() - timestamp) / 60000));
+      if (mins < 60) return `${mins}m ago`;
+      const hrs = Math.floor(mins / 60);
+      if (hrs < 24) return `${hrs}h ago`;
+      return `${Math.floor(hrs / 24)}d ago`;
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderAll() {
+      renderMenu();
+      renderBag();
+      renderCustomerTracking();
+      renderOrders();
+      renderInventory();
+      updateBadges();
+    }
+
+    // Boot Application Immediately
+    loadLocalState();
+    initPwaManifest();
+    updateRoleChrome();
+    updateCheckoutPaymentLabel();
+    renderAll();
+    initCloudSync();
+  </script>
+</body>
+</html>
